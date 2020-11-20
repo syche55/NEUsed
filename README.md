@@ -18,8 +18,8 @@
 
 ### UI Design
 Navbar: using [React- Bootstrap API](https://react-bootstrap.github.io/)
-- About: a page that explains our mission and functionalities of the site. Including some using tips.[]
-- Discover: a page for exploring all items for sales.[]
+- About: a page that explains our mission and functionalities of the site. Including some using tips.
+- Discover: a page for exploring all items for sales.
 - Add a post (shows as + icon)
 - [x] Authenticated user may enter item description, category and item image url when adding a new post
 - User
