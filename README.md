@@ -1,11 +1,13 @@
 # project-NEUsed
-**This is a web application that supports users to sell and buy items. Users can post their items for sale, edit and delete their post and explore things by different categories.**
+**This is a web application that supports NEU students to sell and buy items. Users can post their items for sale, edit and delete their post and explore things by different categories.**
 
 - Development Process: Agile Development(Scrum).
 - Committing way: feature branch workflow by committing branches and submit pull requests to have code reviewed and committed to the master branch
 
-### Team Repository & Members
+### Team Repository
 - [Team Repo](https://github.ccs.neu.edu/orgs/2020FACS5500SV/teams/project-neused-team)
+
+### Team Members
 - [Siyu Chen](https://github.ccs.neu.edu/siyuchen2020)
 - [Yijing Liu](https://github.ccs.neu.edu/yijingliu)
 - [Yixuan Yu](https://github.ccs.neu.edu/nancyyu)
