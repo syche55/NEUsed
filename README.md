@@ -37,9 +37,9 @@ Post can be edit, delete, add. User can sign in and out.
 
 # Project Wiki & docs
 
-[wiki link](https://github.ccs.neu.edu/2020FACS5500SV/project-NEUsed/wiki)
+[Project Wiki](https://github.ccs.neu.edu/2020FACS5500SV/project-NEUsed/wiki)
 
-[doc](https://pages.github.ccs.neu.edu/2020FACS5500SV/project-NEUsed/)
+[Project public webpage](https://pages.github.ccs.neu.edu/2020FACS5500SV/project-NEUsed/)
 
 [Project board](https://github.ccs.neu.edu/2020FACS5500SV/project-NEUsed/projects)
 
