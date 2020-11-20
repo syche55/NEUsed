@@ -33,8 +33,8 @@ Navbar: using [React- Bootstrap API](https://react-bootstrap.github.io/)
 ### Backend Desgin
 - using [MongoDB](https://www.mongodb.com/)
 - Model: 
---Post{title; image url; content; author; status; date; category]
--- User{} Account info from Google Sign in API
+    * Post{title; image url; content; author; status; date; category]
+    * User{} Account info from Google Sign in API
 Post can be edit, delete, add. User can sign in and out.
 
 # Project Wiki & docs
