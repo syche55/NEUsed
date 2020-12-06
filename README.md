@@ -37,7 +37,7 @@ Navbar: using [React- Bootstrap API](https://react-bootstrap.github.io/)
     * User{} Account info from Google Sign in API
 Post can be edit, delete, add. User can sign in and out.
 
-# Project Wiki & docs
+# Project Wiki & docs & Communications Plan
 
 [Project Wiki](https://github.ccs.neu.edu/2020FACS5500SV/project-NEUsed/wiki)
 
@@ -45,3 +45,4 @@ Post can be edit, delete, add. User can sign in and out.
 
 [Project board](https://github.ccs.neu.edu/2020FACS5500SV/project-NEUsed/projects)
 
+[Communications Plan](https://github.ccs.neu.edu/2020FACS5500SV/project-NEUsed/blob/master/docs/Communications%20Plan.pdf)
