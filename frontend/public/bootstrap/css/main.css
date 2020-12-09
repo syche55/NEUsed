@@ -1,3 +1,5 @@
+@import url(https://fonts.googleapis.com/css2?family=Architects+Daughter&display=swap);
+
 .navbar-default {
     background-color: rgba(255, 255, 255, 0.8);
     margin: 0;
@@ -7,13 +9,13 @@
 }
 
 .navbar-default .navbar-nav > li > a {
-    font-family: "Agency FB", monospace;
+    font-family: 'Architects Daughter', cursive;
     font-size: 20px;
     color: #444;
 }
 
 .navbar-default .navbar-brand {
-    font-family: "Agency FB", monospace;
+    font-family: 'Architects Daughter', cursive;
     font-size: 30px;
     color: #444;
 }
