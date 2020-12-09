@@ -1,20 +1,21 @@
 .navbar-default {
-    background-color: #69779b;
+    background-color: rgba(255, 255, 255, 0.8);
     margin: 0;
     border: None;
     border-radius: 0;
+    font-weight: bold;
 }
 
 .navbar-default .navbar-nav > li > a {
-    font-family: "Borealis", sans-serif;
+    font-family: "Agency FB", monospace;
     font-size: 20px;
-    color: #ffffff;
+    color: #444;
 }
 
 .navbar-default .navbar-brand {
-    font-family: "Borealis", sans-serif;
+    font-family: "Agency FB", monospace;
     font-size: 30px;
-    color: #ffffff;
+    color: #444;
 }
 
 body {
