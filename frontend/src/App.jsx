@@ -19,14 +19,13 @@ function NavBar() {
                     <NavItem>Discover</NavItem>
                 </LinkContainer>
             </Nav>
-
             <Nav pullRight>
                 <SignInNavItem />
                 <LinkContainer to="/user">
-                    <MenuItem>User</MenuItem>
+                    <NavItem>User</NavItem>
                 </LinkContainer>
                 <LinkContainer to="/about">
-                    <MenuItem>About</MenuItem>
+                    <NavItem>About</NavItem>
                 </LinkContainer>
             </Nav>
       </Navbar>
