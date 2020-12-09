@@ -1,5 +1,5 @@
 {
     "env": {
-        "MONGO_URL": "mongodb+srv://testuser:WUpc4h62voTeSApT@cluster0.jeqmf.mongodb.net/test"
+        "MONGO_URL": "mongodb+srv://testuser:WUpc4h62voTeSApT@cluster0.jeqmf.mongodb.net/<dbname>?retryWrites=true&w=majority”
     }
 }
