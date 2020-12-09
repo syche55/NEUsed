@@ -9,18 +9,18 @@ const app = express();
 app.use(bodyParser.json());
 
 
-// mongoose.connect(`${process.env.MONGO_URL}`, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true
-//   }).then(() => {
-// app.listen(8000);
+mongoose.connect(`${process.env.MONGO_URL}`, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+  }).then(() => {
+app.listen(8000);
 
-// }).catch(err => {
-// console.log(err);
-// });
-app.listen(8000, ()=>{
-    console.log(`Server is running on port: 8000`);
+}).catch(err => {
+console.log(err);
 });
+// app.listen(8000, ()=>{
+//     console.log(`Server is running on port: 8000`);
+// });
 
 app.use(
     '/graphql',
