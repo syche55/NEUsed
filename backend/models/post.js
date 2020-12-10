@@ -1,36 +1,46 @@
 const mongoose = require('mongoose');
-
+const categoryType = ["Apparel", "Electronics", "Entertainment", "Family", "FreeStuff", "Hobbies", "Other", "Outdoor"];
 const Schema = mongoose.Schema;
 
 const postSchema = new Schema({
-    postTitle: {
-        type: String,
-        required: true
-    },
-    postContent:{
-        type: String,
-        required: true
-    },
-    image:{
-        type: String,
-        required: false
-    },
-    date:{
-        type: Date,
-        required: true
-    },
-    user:{
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    },
-    price:{
-        type: Number,
-        required: true
-    },
-    status:{
-        type: String,
-        required: true
-    }
+            title: {
+                type: String,
+                required: true
+            },
+    
+            content: {
+                type: String,
+                reqiuired: false
+            },
+
+            price: {
+                type: Number,
+                required: false
+            },
+            date: {
+                type: Date,
+                required: false
+            },
+            author: {
+                type: String,
+                required: false
+            },
+            status: {
+                type: Boolean,
+                required: false
+            },
+            image: {
+                type: String,
+                required: false
+            },
+            category: {
+                type: String,
+                enum: categoryType
+            },
+            email: {
+                type: String,
+                required: false
+            }
 });
 
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('Post', postSchema);
