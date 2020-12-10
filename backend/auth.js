@@ -19,7 +19,6 @@ routes.post('/signin', async (req, res) => {
       }
 
     const googleToken = req.body.google_token;
-    // console.log("hit the post route, google token is:", googleToken);
     if (!googleToken) {
       res.status(400).send({ code: 400, message: 'Token is missing' });
       return;
@@ -43,6 +42,7 @@ routes.post('/signin', async (req, res) => {
     res.cookie('jwt', token, { httpOnly: true });
 
     res.json(credentials);
+    // console.log("hit the signin route, res = ", res);
   });
 
 
@@ -56,6 +56,7 @@ routes.post('/user', (req, res) => {
 routes.post('/signout', async (req, res) => {
     res.clearCookie('jwt');
     res.json({ status: 'ok' });
+    // console.log("hit the signout route, res = ", res);
   });
 
 
@@ -80,7 +81,7 @@ function mustBeSignedIn(resolver) {
       }
       return resolver(root, args, { user });
     };
-  }
+}
 
 
 module.exports = { routes, getUser, mustBeSignedIn};
