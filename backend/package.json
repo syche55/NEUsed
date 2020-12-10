@@ -1,0 +1,32 @@
+{
+  "name": "neused",
+  "version": "1.0.0",
+  "description": "**This is a web application that supports NEU students to sell and buy items. Users can post their items for sale, edit and delete their post and explore things by different categories.**",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.ccs.neu.edu/2020FACS5500SV/project-NEUsed"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "apollo-server-express": "^2.19.0",
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-graphql": "^0.12.0",
+    "google-auth-library": "^6.1.3",
+    "graphql": "^15.4.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.11.4"
+  },
+  "devDependencies": {}
+}
