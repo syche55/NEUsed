@@ -11,57 +11,29 @@ function Post() {
         src= 'https://i.ibb.co/G2Fq3kh/IMG-5645.jpg'
         title='test title'
         price='$90'
-        path='/about'
-        content='test content'
-        staus= 'test status'
+        description='test con tentttt ttt  ttt tttt ttt  ttttttt tttt ttttt tt ttt ttt tttt'
+        status= {true}
       />
       <PostItem
         src= 'https://i.ibb.co/G2Fq3kh/IMG-5645.jpg'
-        title='test title'
-        price='$90'
-        path='/about'
-        content='test content'
-        staus= 'test status'
+        title='test 2'
+        price='$40'
+        description='test des'
+        status= {false}
+      />
+		  <PostItem
+        src= 'https://i.ibb.co/Wx3DfTw/geert-pieters-3-Rnk-Zp-Dqs-EI-unsplash.jpg'
+        title='test 3'
+        price='$20'
+        description='testde'
+        status= {true}
       />
       <PostItem
-        src= 'https://i.ibb.co/G2Fq3kh/IMG-5645.jpg'
-        title='test title'
-        price='$90'
-        path='/about'
-        content='test content'
-        staus= 'test status'
-      />
-      <PostItem
-        src= 'https://i.ibb.co/G2Fq3kh/IMG-5645.jpg'
-        title='test title'
-        price='$90'
-        path='/about'
-        content='test content'
-        staus= 'test status'
-      />
-      <PostItem
-        src= 'https://i.ibb.co/G2Fq3kh/IMG-5645.jpg'
-        title='test title'
-        price='$90'
-        path='/about'
-        content='test content'
-        staus= 'test status'
-      />
-      <PostItem
-        src= 'https://i.ibb.co/G2Fq3kh/IMG-5645.jpg'
-        title='test title'
-        price='$90'
-        path='/about'
-        content='test content'
-        staus= 'test status'
-      />
-      <PostItem
-        src= 'https://i.ibb.co/G2Fq3kh/IMG-5645.jpg'
-        title='test title'
-        price='$90'
-        path='/about'
-        content='test content'
-        staus= 'test status'
+        
+        title='test 4'
+        price='$80'
+        description='test c '
+        status= {false}
       />
 	</Grid>
   );

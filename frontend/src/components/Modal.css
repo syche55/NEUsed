@@ -1,11 +1,27 @@
-Backgroun {
-  width: 100%;
-  height: 100%;
-  margin: 0 !important;
-  background: rgba(0, 0, 0, 0.6);
-  position: fixed;
-  display: flex;
-  z-index: 10000;
-  justify-content: center;
-  align-items: center;
+.modal__desc{
+  font-size: 16px;
+  color: rgba(0,0,0,0.6);
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+}
+
+
+.modal__price{
+  font-size: 28px;
+  color: #1f98f4;
+}
+
+.modal__item__on,
+.modal__item__off{
+  padding: 2rem;
+  color:white;
+  font-size: 40px; 
+}
+
+.modal__item__on{
+  -webkit-text-stroke: 0.2px red; 
+}
+
+.modal__item__off{
+  -webkit-text-stroke: 0.2px gray; 
 }

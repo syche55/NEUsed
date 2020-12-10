@@ -39,6 +39,7 @@ h1 {
   flex: 1;
   margin: 0 2rem;
   border-radius: 10px;
+  max-width: 480px;
 }
 
 .post__item__link {
@@ -103,7 +104,7 @@ h1 {
 
 .post__item__title{
   color: #252e48;
-  font-size: 18px;
+  font-size: 20px;
   line-height: 20px;
   font-weight: bold;
   font-family: 'Catamaran', sans-serif;
@@ -118,10 +119,16 @@ h1 {
   list-style: none;
 }
 
-.post__item__staus{
-  color: aquamarine;
+.post__item__on{
+  color:red;
   font-size: 16px;
 }
+
+.post__item__off{
+  color:gray;
+  font-size: 16px;
+}
+
 @media only screen and (min-width: 1200px) {
   .content__blog__container {
     width: 84%;
