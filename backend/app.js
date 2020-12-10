@@ -2,8 +2,12 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { graphqlHTTP } = require('express-graphql');
-
 const mongoose = require('mongoose');
+
+// const isAuth = require('./middleware/is-auth');
+
+
+
 
 const graphQlSchema = require("./graphql/schema/index");
 const graphQlResolvers = require("./graphql/resolvers/index");
@@ -32,10 +36,17 @@ mongoose.connect("mongodb+srv://neuser:RKDo97Qk4X8lO2WH@cluster0.jeqmf.mongodb.n
   }).then(() => {
 app.listen(8000);
 
-}).catch(err => {
-console.log(err);
-});
+// app.use((req, res, next) =>{
+//     res.setHeader('Access-Control-Allow-Origin', '*');
+//     res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS');
+//     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+//     if(req.method === 'OPTIONS') {
+//         return res.sendStatus(200);
+//     }
+//     next();
+// });
 
+// app.use(isAuth);
 
 app.use(
     '/graphql',
@@ -45,3 +56,16 @@ app.use(
         graphiql: true
     })
 );
+
+mongoose.connect(`${process.env.MONGO_URL}`, {
+                useNewUrlParser: true,
+                useUnifiedTopology: true,
+                useFindAndModify: false
+              }).then(() => {
+            app.listen(8000);
+
+        }).catch(err => {
+            console.log(err);
+        });
+
+
