@@ -67,3 +67,4 @@ schema {
     mutation: RootMutation
 }
 `)
+
