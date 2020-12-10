@@ -1,9 +1,12 @@
+// const authResolver = require('./auth');
+const postResolver = require('./post');
 // const userResolver = require('./user');
-// const postResolver = require('/post');
 
-// const rootResolver = {
-//     ...userResolver,
-//     ...postResolver
-// };
+const rootResolver = {
+    // ...authResolver,
+    ...postResolver
+    // ...userResolver
+};
 
-// module.export = rootResolver;
+module.exports = rootResolver;
+
