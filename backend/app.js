@@ -30,11 +30,11 @@ app.use("/auth", authenticate.routes);
 
 
 
-mongoose.connect("mongodb+srv://neuser:RKDo97Qk4X8lO2WH@cluster0.jeqmf.mongodb.net/NEUsed?retryWrites=true&w=majority", {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  }).then(() => {
-app.listen(8000);
+// mongoose.connect("mongodb+srv://neuser:RKDo97Qk4X8lO2WH@cluster0.jeqmf.mongodb.net/NEUsed?retryWrites=true&w=majority", {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true
+//   }).then(() => {
+// app.listen(8000);
 
 // app.use((req, res, next) =>{
 //     res.setHeader('Access-Control-Allow-Origin', '*');
@@ -68,4 +68,4 @@ mongoose.connect(`${process.env.MONGO_URL}`, {
             console.log(err);
         });
 
-
+    
