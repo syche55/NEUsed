@@ -74,6 +74,7 @@ function getUser(req) {
 }
 
 // sign in resolver
+// connect with mutator
 function mustBeSignedIn(resolver) {
     return (root, args, { user }) => {
       if (!user || !user.signedIn) {
