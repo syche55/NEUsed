@@ -16,25 +16,25 @@ routes.post('/signin', async (req, res) => {
     // check on JWT_SECRET first
     if (!JWT_SECRET) {
         res.status(500).send('Missing JWT_SECRET. Refusing to authenticate');
-      }
+    }
 
     const googleToken = req.body.google_token;
     if (!googleToken) {
-      res.status(400).send({ code: 400, message: 'Token is missing' });
-      return;
+        res.status(400).send({ code: 400, message: 'Token is missing' });
+        return;
     }
     const client = new OAuth2Client();
     let payload;
     try {
-      const ticket = await client.verifyIdToken({ idToken: googleToken });
-      payload = ticket.getPayload();
+        const ticket = await client.verifyIdToken({ idToken: googleToken });
+        payload = ticket.getPayload();
     } catch (error) {
-      res.status(403).send('Invalid credentials');
+        res.status(403).send('Invalid credentials');
     }
     // ****Should set up in graphql somewhere??***
     const { given_name: givenName, name, email } = payload;
     const credentials = {
-      signedIn: true, givenName, name, email,
+        signedIn: true, givenName, name, email,
     };
 
     // add in cookie token
@@ -43,7 +43,7 @@ routes.post('/signin', async (req, res) => {
 
     res.json(credentials);
     // console.log("hit the signin route, res = ", res);
-  });
+});
 
 
 // send back current user route
@@ -57,29 +57,29 @@ routes.post('/signout', async (req, res) => {
     res.clearCookie('jwt');
     res.json({ status: 'ok' });
     // console.log("hit the signout route, res = ", res);
-  });
+});
 
 
 // get current user
 function getUser(req) {
     const token = req.cookies.jwt;
-    
+
     if (!token) return { signedIn: false };
     try {
-      const credentials = jwt.verify(token, JWT_SECRET);
-      return credentials;
+        const credentials = jwt.verify(token, JWT_SECRET);
+        return credentials;
     } catch (error) {
-      return { signedIn: false };
+        return { signedIn: false };
     }
 }
 
 // sign in resolver
 function mustBeSignedIn(resolver) {
     return (root, args, { user }) => {
-      if (!user || !user.signedIn) {
-        throw new AuthenticationError('You must be signed in');
-      }
-      return resolver(root, args, { user });
+        if (!user || !user.signedIn) {
+            throw new AuthenticationError('You must be signed in');
+        }
+        return resolver(root, args, { user });
     };
 }
 
