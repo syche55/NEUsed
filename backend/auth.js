@@ -7,7 +7,7 @@ const { AuthenticationError } = require('apollo-server-express');
 const routes = new Router();
 
 require('dotenv').config();
-const JWT_SECRET = process.env.JWT_SECRET
+const JWT_SECRET = "ok"
 
 routes.use(bodyParser.json());
 
@@ -82,6 +82,8 @@ function mustBeSignedIn(resolver) {
       return resolver(root, args, { user });
     };
 }
+
+
 
 
 module.exports = { routes, getUser, mustBeSignedIn};

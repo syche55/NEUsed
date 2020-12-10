@@ -1,22 +1,25 @@
+const { mustBeSignedIn } = require('../../auth');
 const Post = require('../../models/post');
 
-module.exports = {
-    post: async () => {
+    // display posts
+    async function post() {
         try {
         const post = await Post.find();
         return post.map(singlePost => {
                 return {
                     ...singlePost._doc,
-                    _id: singlePost.id
+                    _id: singlePost.id,
+                    createdAt: new Date(singlePost._doc.createdAt).toISOString(),
+                    updatedAt: new Date(singlePost._doc.updatedAt).toISOString()
                 };
             });
         } catch (err) {
             throw err;
         }
-    },
+    }
     
-
-    createPost: async (args, req) => {
+    // create new posts
+    async function createPost(args) {
         const post = new Post({
             title: args.postInput.title,
             content: args.postInput.content,
@@ -24,7 +27,6 @@ module.exports = {
             status: true,
             image: args.postInput.image,
             category: args.postInput.category,
-            date: new Date().toISOString()         
         });
         let createdPost;
         try {
@@ -32,28 +34,31 @@ module.exports = {
         .save()
             createdPost = {
                 ...result._doc,
-                _id: result.id
+                _id: result.id,
+                createdAt: new Date(result._doc.createdAt).toISOString(),
+                updatedAt: new Date(result._doc.updatedAt).toISOString()
             };
             return createdPost;
         } catch (err) {
             console.log(err);
             throw err;
         }
-    },
+    }
 
-    deletePost: async (args, req) => {
+    // delete posts
+    async function deletePost (args){
         try {
             const deletedPost = await Post.findByIdAndRemove({_id: args.postId});
             return deletedPost;
         } catch(err) {
             throw err;
         }
-    },
+    }
 
-    updatePost: async (args, req) => {
+    // update posts
+    async function updatePost (args) {
         try {
             const filter = {_id: args.postId};
-        
             const updatedPost = await Post.findOneAndUpdate(filter, args.postUpdateInput, { "new": true})
             return updatedPost;
             
@@ -61,5 +66,9 @@ module.exports = {
             throw err;
         }
 }
-    
+module.exports = {
+    post: post,
+    createPost: mustBeSignedIn(createPost),
+    deletePost: mustBeSignedIn(deletePost),
+    updatePost: mustBeSignedIn(updatePost)
 };

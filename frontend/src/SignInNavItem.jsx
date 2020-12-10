@@ -4,6 +4,9 @@ import {
 } from 'react-bootstrap';
 import withToast from './withToast.jsx';
 
+const REACT_APP_GOOGLE_CLIENT_ID="54441280778-h5a5bunqbbob7fhhgocmb4t3pr9kjti9.apps.googleusercontent.com"
+const API_ENDPOINT="http://localhost:8000/auth"
+
 class SignInNavItem extends React.Component {
     constructor(props) {
         super(props);
@@ -18,7 +21,7 @@ class SignInNavItem extends React.Component {
     }
 
     componentDidMount() {
-        const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
+        const clientId = REACT_APP_GOOGLE_CLIENT_ID;
         if (!clientId) return;
         window.gapi.load('auth2', () => {
             if (!window.gapi.auth2.getAuthInstance()) {
@@ -38,34 +41,39 @@ class SignInNavItem extends React.Component {
             const auth2 = window.gapi.auth2.getAuthInstance();
             const googleUser = await auth2.signIn();
             googleToken = googleUser.getAuthResponse().id_token;
+            console.log(googleToken);
         } catch (error) {
             showError(`Error authentication with Google: ${error.error}`);
         }
 
         try {
-            const apiEndpoint = window.ENV.UI_AUTH_ENDPOINT;
-            const response = await fetch(`${apiEndpoint}/signin`, {
+            // const API_ENDPOINT = window.ENV.UI_AUTH_ENDPOINT;
+            const response = await fetch(`${API_ENDPOINT}/signin`, {
                 method: 'POST',
                 credentials: 'include',
                 headers: { 'content-Type': 'application/json' },
                 body: JSON.stringify({ google_token: googleToken }),
             });
             const body = await response.text();
+            console.log(body);
             const result = JSON.parse(body);
-            const { signedIn, givenName } = result;
+            const { signedIn, givenName, email} = result;
+            console.log(email);
 
-            const { onUserChange } = this.props;
-            onUserChange({ signedIn, givenName });
+            this.setState({signedIn: true, givenName: 'test'});
+
+            // const { onUserChange } = this.props;
+            // onUserChange({ signedIn, givenName });
         } catch (error) {
             showError(`Error signing into the app: ${error}`);
         }
     }
 
     async signOut() {
-        const apiEndpoint = window.ENV.UI_AUTH_ENDPOINT;
+        // const API_ENDPOINT = window.ENV.UI_AUTH_ENDPOINT;
         const { showError } = this.props;
         try {
-            await fetch(`${apiEndpoint}/signout`, {
+            await fetch(`${API_ENDPOINT}/signout`, {
                 method: 'POST',
                 credentials: 'include',
             });
@@ -79,8 +87,9 @@ class SignInNavItem extends React.Component {
     }
 
     showModal() {
-        const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
+        const clientId = REACT_APP_GOOGLE_CLIENT_ID;
         const { showError } = this.props;
+        console.log(clientId);
         if (!clientId) {
             showError('Missing environment variable GOOGLE_CLIENT_ID');
             return;

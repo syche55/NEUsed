@@ -17,10 +17,10 @@ const postSchema = new Schema({
                 type: Number,
                 required: false
             },
-            date: {
-                type: Date,
-                required: false
-            },
+            // date: {
+            //     type: Date,
+            //     required: false
+            // },
             author: {
                 type: String,
                 required: false
@@ -41,6 +41,7 @@ const postSchema = new Schema({
                 type: String,
                 required: false
             }
-});
+},
+{ timestamps: true});
 
 module.exports = mongoose.model('Post', postSchema);
