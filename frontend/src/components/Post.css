@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Catamaran:wght@500&display=swap');
 
 .post {
   padding: 1rem;
   background: #fff;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Catamaran', sans-serif;
 }
 
 h1 {
@@ -106,7 +106,7 @@ h1 {
   font-size: 18px;
   line-height: 20px;
   font-weight: bold;
-  font-family: 'Montserrat', sans-serif;
+  font-family: 'Catamaran', sans-serif;
   text-decoration: none;
 }
 

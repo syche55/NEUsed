@@ -6,13 +6,14 @@ import {
 import { ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader, SidebarFooter, SidebarContent } from 'react-pro-sidebar';
 import { Link } from 'react-router-dom';
 import Post from "./components/Post";
+import './Discover.css';
 
 class Discover extends React.Component {
     render() {
         return (
             <div className="WithSideBar">
                 <ProSidebar>
-                    <SidebarHeader>Category</SidebarHeader>
+                    <SidebarHeader className="sidebar-title">Category</SidebarHeader>
                     <SidebarContent>
                         <Menu>
                             <MenuItem>

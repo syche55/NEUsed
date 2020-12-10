@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400&display=swap');
+
+
+.WithSideBar{
+  font-family: 'Architects Daughter', cursive;
+  font-weight: bold;
+}
+
+.sidebar-title {
+  padding-left: 20px;
+}

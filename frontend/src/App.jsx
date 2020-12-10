@@ -20,6 +20,9 @@ function NavBar() {
                 </LinkContainer>
             </Nav>
             <Nav pullRight>
+                <LinkContainer to="/sell">
+                    <NavItem>Sell</NavItem>
+                </LinkContainer>
                 <SignInNavItem />
                 <LinkContainer to="/user">
                     <NavItem>User</NavItem>

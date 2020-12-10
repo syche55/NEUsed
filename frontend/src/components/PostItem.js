@@ -1,11 +1,17 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState } from 'react';
+import {Modal} from './Modal';
 
 function PostItem(props) {
+  const [showModal, setShowModal] = useState(false);
+
+  const openModal = () => {
+      setShowModal(prev => !prev);
+  };
+  
   return (
     <>
-      <li className='post__item'>
-        <Link className='post__item__link' to={props.path}>
+      <li className='post__item' onClick={openModal}>
+        <div className='post__item__link'>
           <figure className='post__item__pic-wrap' data-category={props.price}>
             <img
               className='post__item__img'
@@ -18,8 +24,9 @@ function PostItem(props) {
             <h5 className='post__item__content'>{props.content}</h5>
             <h6 className ='post__item__staus'>{props.staus}</h6>
           </div>
-        </Link>
+        </div>
       </li>
+      <Modal showModal={showModal} setShowModal={setShowModal} />
     </>
   );
 }
