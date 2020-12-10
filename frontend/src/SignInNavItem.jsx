@@ -17,14 +17,13 @@ class SignInNavItem extends React.Component {
         this.signOut = this.signOut.bind(this);
     }
 
-    componentDidMount() {
+    async componentDidMount() {
         const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
         if (!clientId) return;
         window.gapi.load('auth2', () => {
             if (!window.gapi.auth2.getAuthInstance()) {
                 window.gapi.auth2.init({ client_id: clientId }).then(() => {
                     this.setState({ disabled: false });
-                    console.log("auth passed");
                 });
             }
         });
@@ -43,7 +42,8 @@ class SignInNavItem extends React.Component {
         }
 
         try {
-            const apiEndpoint = window.ENV.UI_AUTH_ENDPOINT;
+            const apiEndpoint = process.env.REACT_APP_UI_AUTH_ENDPOINT;
+            console.log(apiEndpoint);
             const response = await fetch(`${apiEndpoint}/signin`, {
                 method: 'POST',
                 credentials: 'include',
@@ -51,6 +51,7 @@ class SignInNavItem extends React.Component {
                 body: JSON.stringify({ google_token: googleToken }),
             });
             const body = await response.text();
+            console.log(body);
             const result = JSON.parse(body);
             const { signedIn, givenName } = result;
 
@@ -62,7 +63,7 @@ class SignInNavItem extends React.Component {
     }
 
     async signOut() {
-        const apiEndpoint = window.ENV.UI_AUTH_ENDPOINT;
+        const apiEndpoint = process.env.REACT_APP_UI_AUTH_ENDPOINT;
         const { showError } = this.props;
         try {
             await fetch(`${apiEndpoint}/signout`, {
@@ -93,20 +94,29 @@ class SignInNavItem extends React.Component {
     }
 
     render() {
-        // const { user } = this.props;
-        // if (user.signedIn) {
-        //     return (
-        //         <NavDropdown title={user.givenName} id="user">
-        //             <MenuItem onClick={this.signOut}>Sign out</MenuItem>
-        //         </NavDropdown>
-        //     );
-        // }
+        const { user } = this.props;
+        if (user.signedIn) {
+            return (
+                <>
+                    <NavItem onClick={this.signOut}>
+                        Sign out
+                    </NavItem>
+                    <NavItem>
+                        {user.givenName}
+                    </NavItem>
+                </>
+
+            );
+        }
 
         const { showing, disabled } = this.state;
         return (
             <>
                 <NavItem onClick={this.showModal}>
                     Sign in
+                </NavItem>
+                <NavItem>
+                    Guest
                 </NavItem>
                 <Modal keyboard show={showing} onHide={this.hideModal} bsSize="sm">
                     <Modal.Header closeButton>
