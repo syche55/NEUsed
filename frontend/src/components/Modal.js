@@ -118,7 +118,7 @@ export const Modal = ( { showModal, setShowModal, props }) => {
         <Background onClick={closeModal} ref={modalRef}>
           <animated.div style={animation}>
             <ModalWrapper showModal={showModal}>
-              <ModalImg src={props.src} alt='camera' />
+              <ModalImg src={props.image} alt='camera' />
               <ModalContent>
                 <h1>{props.title}</h1>
                 <p className= 'modal__desc'>{props.description}</p>
@@ -126,7 +126,7 @@ export const Modal = ( { showModal, setShowModal, props }) => {
                 <button>Buy</button>
                 <div className= 'modal__date'>Date - not in frontend</div>
                 <div className= 'modal__creater'>Author - not in frontend</div>
-                { props.status ? 
+                { props.status ?
                 <p className ='modal__item__on'>Availble</p> : <p className ='modal__item__off'>Sold Out</p>
                 }
               </ModalContent>
@@ -134,7 +134,7 @@ export const Modal = ( { showModal, setShowModal, props }) => {
                 aria-label='Close modal'
                 onClick={() => setShowModal(prev => !prev)}
               />
-              
+
             </ModalWrapper>
           </animated.div>
         </Background>
