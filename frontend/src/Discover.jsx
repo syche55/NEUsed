@@ -18,21 +18,23 @@ class Discover extends React.Component {
                     <SidebarContent>
                         <Menu>
                             <MenuItem>
-                                Your Feed
-                                <Link to="/category/" />
+                                Latest Posts
+                                <Link to="/discover/" />
                             </MenuItem>
-                            <SubMenu title="Explore by Category">
-                                <MenuItem>All Categories<Link to="./all" /></MenuItem>
-                                <MenuItem>Ideas<Link to="./ideas" /></MenuItem>
-                                <MenuItem>Artworks<Link to="./artworks" /></MenuItem>
-                                <MenuItem>Spots Around You<Link to="./spotsaroundyou" /></MenuItem>
-                                <MenuItem>Fashion<Link to="./fashion" /></MenuItem>
-                                <MenuItem>Activities<Link to="./activities" /></MenuItem>
-                                <MenuItem>Events<Link to="./events" /></MenuItem>
-                                <MenuItem>Life<Link to="./life" /></MenuItem>
+                            <SubMenu title="Explore by Category" defaultOpen={true}>
+                                <MenuItem>Apparel<Link to="./apparel" /></MenuItem>
+                                <MenuItem>Electronics<Link to="./electronics" /></MenuItem>
+                                <MenuItem>entertainment<Link to="./entertainment" /></MenuItem>
+                                <MenuItem>Family<Link to="./family" /></MenuItem>
+                                <MenuItem>FreeStuff<Link to="./freestuff" /></MenuItem>
+                                <MenuItem>Hobbies<Link to="./hobbies" /></MenuItem>
+                                <MenuItem>Outdoor<Link to="./outdoor" /></MenuItem>
+                                <MenuItem>Other<Link to="./other" /></MenuItem>
                             </SubMenu>
-                            <SubMenu title="Your Category" defaultOpen={true}>
-                            </SubMenu>
+                            <MenuItem>
+                                Your Posts
+                                <Link to="./yourposts" />
+                            </MenuItem>
                         </Menu>
                     </SidebarContent>
                 </ProSidebar>
