@@ -22,8 +22,7 @@ class SignInNavItem extends React.Component {
     static contextType = AuthContext;
 
     componentDidMount() {
-        // const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
-        const clientId = "54441280778-h5a5bunqbbob7fhhgocmb4t3pr9kjti9.apps.googleusercontent.com";
+        const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
         if (!clientId) return;
         window.gapi.load('auth2', () => {
             if (!window.gapi.auth2.getAuthInstance()) {
@@ -124,8 +123,7 @@ class SignInNavItem extends React.Component {
     }
 
     showModal() {
-        // const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
-        const clientId = "54441280778-h5a5bunqbbob7fhhgocmb4t3pr9kjti9.apps.googleusercontent.com";
+        const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
         const { showError } = this.props;
         if (!clientId) {
             showError('Missing environment variable GOOGLE_CLIENT_ID');

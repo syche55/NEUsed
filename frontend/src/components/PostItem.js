@@ -10,6 +10,8 @@ const PostItem= (props) => {
   const openModal = () => {
       setShowModal(prev => !prev);
   };
+
+  
   
   return (
     <>
