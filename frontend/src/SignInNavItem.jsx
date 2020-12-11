@@ -18,7 +18,7 @@ class SignInNavItem extends React.Component {
     }
 
     async componentDidMount() {
-        const clientId = "54441280778-h5a5bunqbbob7fhhgocmb4t3pr9kjti9.apps.googleusercontent.com";
+        const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
         if (!clientId) return;
         window.gapi.load('auth2', () => {
             if (!window.gapi.auth2.getAuthInstance()) {
@@ -42,7 +42,7 @@ class SignInNavItem extends React.Component {
         }
 
         try {
-            const apiEndpoint = "http://localhost:8000/auth";
+            const apiEndpoint = process.env.REACT_APP_UI_AUTH_ENDPOINT;
             console.log(apiEndpoint);
             const response = await fetch(`${apiEndpoint}/signin`, {
                 method: 'POST',
@@ -63,7 +63,7 @@ class SignInNavItem extends React.Component {
     }
 
     async signOut() {
-        const apiEndpoint = "http://localhost:8000/auth";
+        const apiEndpoint = process.env.REACT_APP_UI_AUTH_ENDPOINT;
         const { showError } = this.props;
         try {
             await fetch(`${apiEndpoint}/signout`, {
@@ -80,7 +80,7 @@ class SignInNavItem extends React.Component {
     }
 
     showModal() {
-        const clientId = "54441280778-h5a5bunqbbob7fhhgocmb4t3pr9kjti9.apps.googleusercontent.com";
+        const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
         const { showError } = this.props;
         if (!clientId) {
             showError('Missing environment variable GOOGLE_CLIENT_ID');
