@@ -9,6 +9,9 @@ import Col from "react-bootstrap/lib/Col";
 
 
 class Post extends Component  {
+
+  static contextType = authContext;
+
   static async fetchData(showError) {
     const query = `
               query {
@@ -30,12 +33,13 @@ class Post extends Component  {
     return data;
   }
 
+  
+
   constructor(props) {
     super(props);
     this.state = { posts: null };
   }
 
-  static contextType = authContext;
 
   componentDidMount() {
     const { posts } = this.state;

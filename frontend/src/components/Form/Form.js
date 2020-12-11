@@ -90,20 +90,6 @@ class Form extends Component {
     });
   
   }
-
-
-    // if (this.state) {
-    //   console.log(`
-    //     --SUBMITTING--
-    //     title: ${this.state.title}
-    //     content: ${this.state.content}
-    //     price: ${this.state.price}
-    //     image: ${this.state.image}
-    //     category: ${this.state.category}
-    //   `);
-    // } else {
-    //   console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
-    // }
   };
 
   validate (args) {
