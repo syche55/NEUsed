@@ -2,20 +2,38 @@ const { mustBeSignedIn } = require('../../auth');
 const Post = require('../../models/post');
 
     // display posts
-    async function post() {
+    async function post(args) {
+        const emailFilter = args.email;
+        const categoryFilter = args.category;
         try {
-        const post = await Post.find();
-        return post.map(singlePost => {
-                return {
-                    ...singlePost._doc,
-                    _id: singlePost.id,
-                    createdAt: new Date(singlePost._doc.createdAt).toISOString(),
-                    updatedAt: new Date(singlePost._doc.updatedAt).toISOString()
-                };
-            });
-        } catch (err) {
-            throw err;
-        }
+            const post = await Post.find();
+            if (emailFilter != null) {
+                filteredEmailPosts = post.filter(function(filterEmailPost){
+                    return filterEmailPost.email == emailFilter;
+                }); 
+            } else {
+                filteredEmailPosts=post;
+                }
+            if (categoryFilter !=null) {
+                filteredCategoryPosts = filteredEmailPosts.filter(function(filterCategoryPost){
+                    return filterCategoryPost.category == categoryFilter;
+                });
+            } else {
+                filteredCategoryPosts = filteredEmailPosts;
+            }
+                return filteredCategoryPosts.map(singlePost => {
+                    return {
+                        ...singlePost._doc,
+                        _id: singlePost.id,
+                        createdAt: new Date(singlePost._doc.createdAt).toISOString(),
+                        updatedAt: new Date(singlePost._doc.updatedAt).toISOString()
+                    };
+                });
+            }
+            
+             catch (err) {
+                throw err;
+            }
     }
     
     // create new posts
