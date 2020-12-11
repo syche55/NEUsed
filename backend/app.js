@@ -3,9 +3,10 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const { graphqlHTTP } = require('express-graphql');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 // const isAuth = require('./middleware/is-auth');
-
+const app = express();
 
 
 
@@ -14,7 +15,6 @@ const graphQlResolvers = require("./graphql/resolvers/index");
 
 const authenticate = require("./auth.js");
 
-const app = express();
 
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -22,6 +22,7 @@ app.use(function(req, res, next) {
     res.set({
         'Access-Control-Allow-Origin':'http://localhost:3000',
         'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept',
+        'Access-Control-Request-Method': 'GET, POST, OPTIONS',
         'Access-Control-Allow-Credentials': 'true',
     })
     next();
@@ -48,6 +49,9 @@ app.use("/auth", authenticate.routes);
 
 // app.use(isAuth);
 
+
+app.options('*', cors());
+
 app.use(
     '/graphql',
     graphqlHTTP({
@@ -68,4 +72,3 @@ mongoose.connect(`${process.env.MONGO_URL}`, {
             console.log(err);
         });
 
-    

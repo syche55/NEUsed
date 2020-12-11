@@ -15,18 +15,20 @@ function PostItem(props) {
           <figure className='post__item__pic-wrap' data-category={props.price}>
             <img
               className='post__item__img'
-              alt='Travel Image'
+              alt='Product Image'
               src={props.src}
             />
           </figure>
           <div className='post__item__info'>
-            <h5 className='post__item__title'>{props.title}</h5>
-            <h5 className='post__item__content'>{props.content}</h5>
-            <h6 className ='post__item__staus'>{props.staus}</h6>
+            <p className='post__item__title'>{props.title}</p>
+            {/* <h5 className='post__item__content'>{props.description}</h5> */}
+            { props.status ? 
+            <p className ='post__item__on'>Availble</p> : <p className ='post__item__off'>Sold Out</p>
+            }
           </div>
         </div>
       </li>
-      <Modal showModal={showModal} setShowModal={setShowModal} />
+      <Modal showModal={showModal} setShowModal={setShowModal} props={props}/>
     </>
   );
 }

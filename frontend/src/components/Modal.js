@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useCallback } from 'react';
 import { useSpring, animated } from 'react-spring';
 import styled from 'styled-components';
 import { MdClose } from 'react-icons/md';
+import './Modal.css';
 
 const Background = styled.div`
   width: 100%;
@@ -31,8 +32,16 @@ const ModalWrapper = styled.div`
 `;
 
 const ModalImg = styled.img`
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: block;
   width: 100%;
+  max-width: 100%;
   height: 100%;
+  max-height: 100%;
+  object-fit: cover;
   border-radius: 10px 0 0 10px;
   background: #000;
 `;
@@ -48,10 +57,12 @@ const ModalContent = styled.div`
     margin-bottom: 1rem;
   }
   button {
-    padding: 10px 24px;
+    padding: 5px 24px;
+    margin-bottom: 10px;
     background: #141414;
     color: #fff;
     border: none;
+    border-radius: 10px;
   }
 `;
 
@@ -66,7 +77,7 @@ const CloseModalButton = styled(MdClose)`
   z-index: 10;
 `;
 
-export const Modal = ({ showModal, setShowModal }) => {
+export const Modal = ( { showModal, setShowModal, props }) => {
   const modalRef = useRef();
 
   const animation = useSpring({
@@ -107,19 +118,23 @@ export const Modal = ({ showModal, setShowModal }) => {
         <Background onClick={closeModal} ref={modalRef}>
           <animated.div style={animation}>
             <ModalWrapper showModal={showModal}>
-              <ModalImg src='https://i.ibb.co/G2Fq3kh/IMG-5645.jpg' alt='camera' />
+              <ModalImg src={props.src} alt='camera' />
               <ModalContent>
-                <h1>title</h1>
-                <p>content</p>
-                <p>Date - not in frontend</p>
-                <p>Author - not in frontend</p>
-                <p>Price</p>
+                <h1>{props.title}</h1>
+                <p className= 'modal__desc'>{props.description}</p>
+                <p className= 'modal__price'>{props.price}</p>
                 <button>Buy</button>
+                <div className= 'modal__date'>Date - not in frontend</div>
+                <div className= 'modal__creater'>Author - not in frontend</div>
+                { props.status ? 
+                <p className ='modal__item__on'>Availble</p> : <p className ='modal__item__off'>Sold Out</p>
+                }
               </ModalContent>
               <CloseModalButton
                 aria-label='Close modal'
                 onClick={() => setShowModal(prev => !prev)}
               />
+              
             </ModalWrapper>
           </animated.div>
         </Background>

@@ -69,7 +69,7 @@ function getUser(req) {
       const credentials = jwt.verify(token, JWT_SECRET);
       return credentials;
     } catch (error) {
-      return { signedIn: false };
+      return { signedIn: false, email: credentials.email };
     }
 }
 

@@ -41,6 +41,7 @@ input PostInput {
     price: Float
     status: Boolean
     image: String
+    email: String
     category: categoryType = Other
 }
 

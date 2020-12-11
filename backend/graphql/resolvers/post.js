@@ -1,4 +1,4 @@
-const { mustBeSignedIn } = require('../../auth');
+const { mustBeSignedIn, getUser } = require('../../auth');
 const Post = require('../../models/post');
 
     // display posts
@@ -27,6 +27,7 @@ const Post = require('../../models/post');
             status: true,
             image: args.postInput.image,
             category: args.postInput.category,
+            email: args.postInput.email
         });
         let createdPost;
         try {
@@ -68,7 +69,10 @@ const Post = require('../../models/post');
 }
 module.exports = {
     post: post,
-    createPost: mustBeSignedIn(createPost),
-    deletePost: mustBeSignedIn(deletePost),
-    updatePost: mustBeSignedIn(updatePost)
+    createPost: createPost,
+    deletePost: deletePost,
+    updatePost: updatePost
+    // createPost: mustBeSignedIn(createPost),
+    // deletePost: mustBeSignedIn(deletePost),
+    // updatePost: mustBeSignedIn(updatePost)
 };
