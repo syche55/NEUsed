@@ -31,21 +31,22 @@ app.use("/auth", authenticate.routes);
 
 
 
-// mongoose.connect("mongodb+srv://neuser:RKDo97Qk4X8lO2WH@cluster0.jeqmf.mongodb.net/NEUsed?retryWrites=true&w=majority", {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true
-//   }).then(() => {
-// app.listen(8000);
+mongoose.connect("mongodb+srv://neuser:RKDo97Qk4X8lO2WH@cluster0.jeqmf.mongodb.net/NEUsed?retryWrites=true&w=majority", {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false
+  }).then(() => {
+app.listen(8000);
 
-// app.use((req, res, next) =>{
-//     res.setHeader('Access-Control-Allow-Origin', '*');
-//     res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS');
-//     res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-//     if(req.method === 'OPTIONS') {
-//         return res.sendStatus(200);
-//     }
-//     next();
-// });
+app.use((req, res, next) =>{
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Methods', 'POST,GET,OPTIONS');
+    res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+    if(req.method === 'OPTIONS') {
+        return res.sendStatus(200);
+    }
+    next();
+});
 
 // app.use(isAuth);
 
@@ -61,14 +62,20 @@ app.use(
     })
 );
 
-mongoose.connect(`${process.env.MONGO_URL}`, {
-                useNewUrlParser: true,
-                useUnifiedTopology: true,
-                useFindAndModify: false
-              }).then(() => {
-            app.listen(8000);
+// mongoose.connect(`${process.env.MONGO_URL}`, {
+//         useNewUrlParser: true,
+//         useUnifiedTopology: true,
+//         useFindAndModify: false
+//     }).then(() => {
+//     app.listen(8000);
 
-        }).catch(err => {
-            console.log(err);
-        });
+//     }).catch(err => {
+//     console.log(err);
+//     });
 
+// });
+
+<<<<<<< HEAD
+});
+=======
+>>>>>>> 2fa669ae898713f47decf68fb2208de381c4221d

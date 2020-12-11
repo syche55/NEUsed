@@ -2,11 +2,9 @@ import React from 'react';
 import {
     NavItem, Modal, Button, NavDropdown, MenuItem,
 } from 'react-bootstrap';
-import AuthContext from './auth-context.js';
 import withToast from './withToast.jsx';
 
 class SignInNavItem extends React.Component {
-    
     constructor(props) {
         super(props);
         this.state = {
@@ -19,16 +17,13 @@ class SignInNavItem extends React.Component {
         this.signOut = this.signOut.bind(this);
     }
 
-    static contextType = AuthContext;
-
-    componentDidMount() {
+    async componentDidMount() {
         const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
         if (!clientId) return;
         window.gapi.load('auth2', () => {
             if (!window.gapi.auth2.getAuthInstance()) {
                 window.gapi.auth2.init({ client_id: clientId }).then(() => {
                     this.setState({ disabled: false });
-                    console.log("auth passed");
                 });
             }
         });
@@ -46,26 +41,9 @@ class SignInNavItem extends React.Component {
             showError(`Error authentication with Google: ${error.error}`);
         }
 
-    //     try {
-    //         const apiEndpoint = window.ENV.UI_AUTH_ENDPOINT;
-    //         const response = await fetch(`${apiEndpoint}/signin`, {
-    //             method: 'POST',
-    //             credentials: 'include',
-    //             headers: { 'content-Type': 'application/json' },
-    //             body: JSON.stringify({ google_token: googleToken }),
-    //         });
-    //         const body = await response.text();
-    //         const result = JSON.parse(body);
-    //         const { signedIn, givenName } = result;
-
-    //         const { onUserChange } = this.props;
-    //         onUserChange({ signedIn, givenName });
-    //     } catch (error) {
-    //         showError(`Error signing into the app: ${error}`);
-    //     }
-    // }
-          try {
+        try {
             const apiEndpoint = process.env.REACT_APP_UI_AUTH_ENDPOINT;
+            console.log(apiEndpoint);
             const response = await fetch(`${apiEndpoint}/signin`, {
                 method: 'POST',
                 credentials: 'include',
@@ -73,35 +51,17 @@ class SignInNavItem extends React.Component {
                 body: JSON.stringify({ google_token: googleToken }),
             });
             const body = await response.text();
+            console.log(body);
             const result = JSON.parse(body);
-            console.log(result);
-            const { signedIn, givenName, email } = result;
-            this.context.email = email;
-            this.context.signedIn = signedIn;
-            this.setState({ signedIn: signedIn, givenName: givenName, email: email});
-            // const { onUserChange } = this.props;
-            // onUserChange({ signedIn, givenName });
+            const { signedIn, givenName } = result;
+
+            const { onUserChange } = this.props;
+            onUserChange({ signedIn, givenName });
         } catch (error) {
             showError(`Error signing into the app: ${error}`);
         }
-    }  
+    }
 
-    // async signOut() {
-    //     const apiEndpoint = window.ENV.UI_AUTH_ENDPOINT;
-    //     const { showError } = this.props;
-    //     try {
-    //         await fetch(`${apiEndpoint}/signout`, {
-    //             method: 'POST',
-    //             credentials: 'include',
-    //         });
-    //         const auth2 = window.gapi.auth2.getAuthInstance();
-    //         await auth2.signOut();
-    //         const { onUserChange } = this.props;
-    //         onUserChange({ signedIn: false, givenName: '' });
-    //     } catch (error) {
-    //         showError(`Error signing out: ${error}`);
-    //     }
-    // }
     async signOut() {
         const apiEndpoint = process.env.REACT_APP_UI_AUTH_ENDPOINT;
         const { showError } = this.props;
@@ -112,11 +72,8 @@ class SignInNavItem extends React.Component {
             });
             const auth2 = window.gapi.auth2.getAuthInstance();
             await auth2.signOut();
-            // const { onUserChange } = this.props;
-            // onUserChange({ signedIn: false, givenName: '' });
-            this.context.signedIn = false;
-            this.setState({ signedIn: false, givenName: "", email:""});
-
+            const { onUserChange } = this.props;
+            onUserChange({ signedIn: false, givenName: '' });
         } catch (error) {
             showError(`Error signing out: ${error}`);
         }
@@ -137,29 +94,27 @@ class SignInNavItem extends React.Component {
     }
 
     render() {
-        // const { user } = this.props;
-        // if (user.signedIn) {
-        //     return (
-        //         <NavDropdown title={user.givenName} id="user">
-        //             <MenuItem onClick={this.signOut}>Sign out</MenuItem>
-        //         </NavDropdown>
-        //     );
-        // }
-
-        const {signedIn, givenName, email} = this.state;
-        if (signedIn) {
+        const { user } = this.props;
+        if (user.signedIn) {
             return (
-                <NavDropdown title={givenName} id="user">
-                    <MenuItem onClick={this.signOut}>Sign out</MenuItem>
-                </NavDropdown>
+                <>
+                    <NavItem onClick={this.signOut}>
+                        Sign out
+                    </NavItem>
+                    <NavItem>
+                        {user.givenName}
+                    </NavItem>
+                </>
             );
         }
-
         const { showing, disabled } = this.state;
         return (
             <>
                 <NavItem onClick={this.showModal}>
                     Sign in
+                </NavItem>
+                <NavItem>
+                    Guest
                 </NavItem>
                 <Modal keyboard show={showing} onHide={this.hideModal} bsSize="sm">
                     <Modal.Header closeButton>
@@ -173,7 +128,7 @@ class SignInNavItem extends React.Component {
                             bsStyle="primary"
                             onClick={this.signIn}
                         >
-                            < img src="https://developers.google.com/identity/images/btn_google_signin_light_normal_web.png" alt="Sign In" />
+                            <img src="https://developers.google.com/identity/images/btn_google_signin_light_normal_web.png" alt="Sign In" />
                         </Button>
                     </Modal.Body>
                     <Modal.Footer>
@@ -184,5 +139,4 @@ class SignInNavItem extends React.Component {
         );
     }
 }
-
 export default withToast(SignInNavItem);
