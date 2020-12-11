@@ -32,7 +32,8 @@ app.use("/auth", authenticate.routes);
 
 mongoose.connect("mongodb+srv://neuser:RKDo97Qk4X8lO2WH@cluster0.jeqmf.mongodb.net/NEUsed?retryWrites=true&w=majority", {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+    useFindAndModify: false
   }).then(() => {
 app.listen(8000);
 
@@ -57,15 +58,17 @@ app.use(
     })
 );
 
-mongoose.connect(`${process.env.MONGO_URL}`, {
-                useNewUrlParser: true,
-                useUnifiedTopology: true,
-                useFindAndModify: false
-              }).then(() => {
-            app.listen(8000);
+// mongoose.connect(`${process.env.MONGO_URL}`, {
+//         useNewUrlParser: true,
+//         useUnifiedTopology: true,
+//         useFindAndModify: false
+//     }).then(() => {
+//     app.listen(8000);
 
-        }).catch(err => {
-            console.log(err);
-        });
+//     }).catch(err => {
+//     console.log(err);
+//     });
 
-  });
+// });
+
+});
