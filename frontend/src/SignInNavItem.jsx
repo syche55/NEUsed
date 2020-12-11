@@ -3,6 +3,7 @@ import {
     NavItem, Modal, Button, NavDropdown, MenuItem,
 } from 'react-bootstrap';
 import withToast from './withToast.jsx';
+import AuthContext from './auth-context.js';
 
 class SignInNavItem extends React.Component {
     constructor(props) {
@@ -16,6 +17,8 @@ class SignInNavItem extends React.Component {
         this.signIn = this.signIn.bind(this);
         this.signOut = this.signOut.bind(this);
     }
+
+    static contextType = AuthContext;
 
     async componentDidMount() {
         const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID;
@@ -53,10 +56,10 @@ class SignInNavItem extends React.Component {
             const body = await response.text();
             console.log(body);
             const result = JSON.parse(body);
-            const { signedIn, givenName } = result;
+            const { signedIn, givenName, email } = result;
 
             const { onUserChange } = this.props;
-            onUserChange({ signedIn, givenName });
+            onUserChange({ signedIn, givenName, email });
         } catch (error) {
             showError(`Error signing into the app: ${error}`);
         }
@@ -73,7 +76,7 @@ class SignInNavItem extends React.Component {
             const auth2 = window.gapi.auth2.getAuthInstance();
             await auth2.signOut();
             const { onUserChange } = this.props;
-            onUserChange({ signedIn: false, givenName: '' });
+            onUserChange({ signedIn: false, givenName: '', email: '' });
         } catch (error) {
             showError(`Error signing out: ${error}`);
         }

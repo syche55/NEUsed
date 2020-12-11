@@ -14,7 +14,7 @@ function NavBar({ user, onUserChange }) {
                 <Navbar.Brand>NEUsed</Navbar.Brand>
             </Navbar.Header>
             <Nav>
-                <LinkContainer exact to="/discover/">
+                <LinkContainer to="/discover/">
                     <NavItem>Discover</NavItem>
                 </LinkContainer>
             </Nav>
