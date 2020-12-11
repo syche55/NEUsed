@@ -7,8 +7,11 @@ import authContext from "../auth-context";
 
 class Post extends Component  {
   static contextType = authContext;
+  state = {
+    allPosts: []
+  };
 
-  fetchPost() {
+  fetchPost = () =>{
     // this.setState({ isLoading: true });
     const requestBody = {
       query: `
@@ -20,6 +23,7 @@ class Post extends Component  {
                     price
                     createdAt
                     email
+                    status
                 }
               }
             `,
@@ -38,22 +42,26 @@ class Post extends Component  {
         return res.json();
       })
       .then((resData) => {
-        const availabilityLists = resData.data.availability;
-        //   console.log(availabilityLists);
+        const allPosts = resData.data.posts;
+        console.log(allPosts);
         this.setState({
-          availabilityLists: availabilityLists,
-          isLoading: false,
+          allPosts: allPosts
         });
       })
       .catch((err) => {
         console.log(err);
-        this.setState({ isLoading: false });
       });
   }
+
+  
+
+
+
   render() {
-  return (
-    <Grid>
-    <PostItem
+    const allPosts = this.state.allPosts;
+    return (
+      <Grid>
+          <PostItem
         src= 'https://i.ibb.co/G2Fq3kh/IMG-5645.jpg'
         title='test title'
         price='$90'
@@ -67,7 +75,7 @@ class Post extends Component  {
         description='test des'
         status= {false}
       />
-    <PostItem
+		  <PostItem
         src= 'https://i.ibb.co/Wx3DfTw/geert-pieters-3-Rnk-Zp-Dqs-EI-unsplash.jpg'
         title='test 3'
         price='$20'
@@ -81,9 +89,10 @@ class Post extends Component  {
         description='test c '
         status= {false}
       />
- </Grid>
-  );
+      </Grid>
+    )
 }
+
 }
 
 export default Post;

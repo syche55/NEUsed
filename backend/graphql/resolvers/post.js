@@ -1,4 +1,4 @@
-const { mustBeSignedIn, getUser } = require('../../auth');
+const { mustBeSignedIn } = require('../../auth');
 const Post = require('../../models/post');
 
     // display posts

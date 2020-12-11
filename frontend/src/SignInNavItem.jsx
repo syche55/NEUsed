@@ -78,6 +78,7 @@ class SignInNavItem extends React.Component {
             console.log(result);
             const { signedIn, givenName, email } = result;
             this.context.email = email;
+            this.context.signedIn = signedIn;
             this.setState({ signedIn: signedIn, givenName: givenName, email: email});
             // const { onUserChange } = this.props;
             // onUserChange({ signedIn, givenName });
@@ -114,6 +115,7 @@ class SignInNavItem extends React.Component {
             await auth2.signOut();
             // const { onUserChange } = this.props;
             // onUserChange({ signedIn: false, givenName: '' });
+            this.context.signedIn = false;
             this.setState({ signedIn: false, givenName: "", email:""});
 
         } catch (error) {
