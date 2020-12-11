@@ -27,6 +27,7 @@ const Post = require('../../models/post');
             status: true,
             image: args.postInput.image,
             category: args.postInput.category,
+            creator: args.postInput.creator,
             email: args.postInput.email
         });
         let createdPost;
@@ -72,7 +73,4 @@ module.exports = {
     createPost: createPost,
     deletePost: deletePost,
     updatePost: updatePost
-    // createPost: mustBeSignedIn(createPost),
-    // deletePost: mustBeSignedIn(deletePost),
-    // updatePost: mustBeSignedIn(updatePost)
 };

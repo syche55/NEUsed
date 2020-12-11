@@ -17,11 +17,7 @@ const postSchema = new Schema({
                 type: Number,
                 required: false
             },
-            // date: {
-            //     type: Date,
-            //     required: false
-            // },
-            author: {
+            creator: {
                 type: String,
                 required: false
             },

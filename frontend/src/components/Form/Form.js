@@ -42,21 +42,16 @@ class Form extends Component {
     const image = this.imageElRef.current.value;
     const category = this.categoryElRef.current.value;
     const email = this.context.email;
+    const creator = this.context.givenName;
+    
+    if (this.validate({title, content, price, image})) {
 
-    // input validation
-    if (
-      title.trim().length === 0 ||
-      price < 0 ||
-      content.trim().length === 0 ||
-      image.trim().length === 0
-    ) {
-      return;
-    }
+    
 
     const requestBody = {
       query: `
         mutation {
-          createPost(postInput:{title: "${title}", content: "${content}", price: ${price}, image:"${image}", category:${category}, email:"${email}"}) {
+          createPost(postInput:{title: "${title}", content: "${content}", price: ${price}, image:"${image}", category:${category}, email:"${email}", creator:"${creator}"}) {
             _id
             title
             content
@@ -66,11 +61,12 @@ class Form extends Component {
             email
             createdAt
             status
+            creator
           }
         }
       `
     }
-
+      
       console.log(JSON.stringify(requestBody));
 
     fetch("http://localhost:8000/graphql", {
@@ -87,10 +83,13 @@ class Form extends Component {
     })
     .then((resData) => {
       console.log(resData);
+      window.alert("Successfully created new post!")
     })
     .catch((err) => {
       console.log(err);
     });
+  
+  }
 
 
     // if (this.state) {
@@ -106,6 +105,21 @@ class Form extends Component {
     //   console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
     // }
   };
+
+  validate (args) {
+    // input validation
+    if (
+      args.title.trim().length === 0 ||
+      args.price === null ||
+      args.price < 0 ||
+      args.content.trim().length === 0 ||
+      args.image.trim().length === 0
+    ) {
+      window.alert("Bad input!");
+      return false;
+    }
+    return true;
+  }
 
 
   render() {
@@ -169,9 +183,7 @@ class Form extends Component {
                 <option value="Family">Outdoor</option>
               </select>
             </div>
-            <div className="email">
-            <input type="hidden" value={this.context.email}></input>
-            </div>
+            
             <div className="createPost">
               <button type="submit">Add Post Now</button>
             </div>

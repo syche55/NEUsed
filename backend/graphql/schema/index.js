@@ -12,6 +12,7 @@ type Post {
     image: String
     category: categoryType
     email: String
+    creator: String
     createdAt: String
     updatedAt: String
 }
@@ -42,6 +43,7 @@ input PostInput {
     status: Boolean
     image: String
     email: String
+    creator: String
     category: categoryType = Other
 }
 

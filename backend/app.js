@@ -5,7 +5,6 @@ const { graphqlHTTP } = require('express-graphql');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
-// const isAuth = require('./middleware/is-auth');
 const app = express();
 
 
