@@ -40,7 +40,7 @@ export default class App extends React.Component {
 
     async componentDidMount() {
         const apiEndpoint = process.env.REACT_APP_UI_AUTH_ENDPOINT;
-        const response = await fetch("http://localhost:8000/auth/user", {
+        const response = await fetch(`${apiEndpoint}/user`, {
             method: 'POST',
             credentials: "include"
         });
