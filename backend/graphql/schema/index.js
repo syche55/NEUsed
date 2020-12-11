@@ -1,17 +1,19 @@
 const { buildSchema } = require('graphql');
 
+
 module.exports = buildSchema(`
 type Post {
     _id: ID!
     title: String!
     content: String
     price: Float
-    date: String
     author: String
     status: Boolean
     image: String
     category: categoryType
     email: String
+    createdAt: String
+    updatedAt: String
 }
 
 type User {
@@ -39,6 +41,7 @@ input PostInput {
     price: Float
     status: Boolean
     image: String
+    email: String
     category: categoryType = Other
 }
 

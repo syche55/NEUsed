@@ -47,8 +47,8 @@ export default class App extends React.Component {
         const body = await response.text();
         console.log(body);
         const result = JSON.parse(body);
-        const { signedIn, givenName } = result;
-        this.setState({ user: {signedIn, givenName } });
+        const { signedIn, givenName, email } = result;
+        this.setState({ user: {signedIn, givenName, email } });
     }
 
     onUserChange(user) {
