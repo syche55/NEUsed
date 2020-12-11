@@ -33,10 +33,10 @@ const PostItem= (props) => {
   //       </>
   //   );
 
-    const postItems = props.posts.map((post) =>{
+      const post = props.post;
       return (
-
-          <li key={post._id} className='post__item' onClick={openModal}>
+        <>
+          <li className='post__item' onClick={openModal}>
             <div className='post__item__link'>
               <figure className='post__item__pic-wrap' data-category={post.price}>
                 <img
@@ -53,12 +53,10 @@ const PostItem= (props) => {
                 }
               </div>
             </div>
-              <Modal showModal={showModal} setShowModal={setShowModal} props={props}/>
           </li>
+          <Modal showModal={showModal} setShowModal={setShowModal} props={props}/>
+          </>
       );
-    }
-    );
-    return postItems;
 }
 
 

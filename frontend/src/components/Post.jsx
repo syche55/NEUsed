@@ -5,6 +5,7 @@ import Grid from './Grid';
 import authContext from "../auth-context";
 import graphQLFetch from "../graphQLFetch.js";
 import withToast from "../withToast.jsx";
+import Col from "react-bootstrap/lib/Col";
 
 
 class Post extends Component  {
@@ -62,10 +63,12 @@ class Post extends Component  {
     const { posts } = this.state;
     console.log(posts);
     if (posts != null) {
+      const postItems = posts.map((post) =>(
+          <PostItem post={post} key={post._id} />
+      ));
       return (
           <Grid>
-            <PostItem posts = {posts}
-            />
+            {postItems}
           </Grid>
       )
     } else {
