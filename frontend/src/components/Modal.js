@@ -2,6 +2,7 @@ import React, { useRef, useEffect, useCallback } from 'react';
 import { useSpring, animated } from 'react-spring';
 import styled from 'styled-components';
 import { MdClose } from 'react-icons/md';
+import moment from 'moment';
 import './Modal.css';
 
 const Background = styled.div`
@@ -121,11 +122,11 @@ export const Modal = ( { showModal, setShowModal, props }) => {
               <ModalImg src={props.image} alt='camera' />
               <ModalContent>
                 <h1>{props.title}</h1>
-                <p className= 'modal__desc'>{props.description}</p>
+                <p className= 'modal__desc'>{props.content}</p>
                 <p className= 'modal__price'>{props.price}</p>
                 <button>Buy</button>
-                <div className= 'modal__date'>Date - not in frontend</div>
-                <div className= 'modal__creater'>Author - not in frontend</div>
+      <div className= 'modal__date'>{moment(props.createdAt, "YYYYMMDD").fromNow()}</div>
+                <div className= 'modal__creater'>{props.email}</div>
                 { props.status ?
                 <p className ='modal__item__on'>Availble</p> : <p className ='modal__item__off'>Sold Out</p>
                 }
