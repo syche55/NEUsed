@@ -8,19 +8,28 @@ import authContext from "../auth-context";
 
 
 class Post extends Component  {
-  static contextType = authContext;
-  state = {
-    posts: []
-  };
+  static async fetchData(match, search, showError) {
+    const params = new URLSearchParams(search);
+    const vars = { hasSelection: false, selectedId: 0 };
+    if (params.get('status')) vars.status = params.get('status');
 
-  componentDidMount() {
-    this.fetchPost();
-  }
+    const effortMin = parseInt(params.get('effortMin'), 10);
+    if (!Number.isNaN(effortMin)) vars.effortMin = effortMin;
+    const effortMax = parseInt(params.get('effortMax'), 10);
+    if (!Number.isNaN(effortMax)) vars.effortMax = effortMax;
 
-  fetchPost = () =>{
-    // this.setState({ isLoading: true });
-    const requestBody = {
-      query: `
+    const { params: { id } } = match;
+    const idInt = parseInt(id, 10);
+    if (!Number.isNaN(idInt)) {
+      vars.hasSelection = true;
+      vars.selectedId = idInt;
+    }
+
+    let page = parseInt(params.get('page'), 10);
+    if (Number.isNaN(page)) page = 1;
+    vars.page = page;
+
+    const query = `
               query {
                 post {
                     _id
@@ -33,36 +42,33 @@ class Post extends Component  {
                     createdAt
                 }
               }
-            `,
-    };
+            `;
 
-    const token = this.context.token;
-    fetch("/graphql", {
-      method: "POST",
-      body: JSON.stringify(requestBody),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => {
-        if (res.status !== 200 && res.status !== 201) {
-          throw new Error("Failed!");
-        }
-        return res.json();
-      })
-      .then((resData) => {
-        const posts = resData.data.post;
-        console.log(posts.length);
-        this.setState({
-          posts: posts
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    const data = await graphQLFetch(query, vars, showError);
+    return data;
   }
 
-  
+  constructor(props) {
+    super(props);
+    this.state = { posts: null };
+  }
+
+  static contextType = authContext;
+
+  componentDidMount() {
+    this.fetchPost();
+  }
+
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    const { match: { params: { category: prevCate } } } = prevProps;
+    const { match: { params: { category } } } = this.props;
+    if (prevCate !== category) {
+      this.loadData();
+    }
+
+  }
+
+
 
   render() {
     return (

@@ -5,7 +5,7 @@ import {
 } from "react-bootstrap";
 import { ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader, SidebarFooter, SidebarContent } from 'react-pro-sidebar';
 import { Link } from 'react-router-dom';
-import Post from "./components/Post";
+import Post from "./components/Post.jsx";
 import './Discover.css';
 // import AuthContext from './auth-context';
 
