@@ -5,7 +5,8 @@ export default function Sell() {
     
     return (
         <div >
-            <Form />
+            <Form 
+            />
         </div>
     );
 }

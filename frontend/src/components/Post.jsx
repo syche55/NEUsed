@@ -20,6 +20,7 @@ class Post extends Component  {
                     status
                     image
                     email
+                    creator
                     createdAt
                 }
               }
