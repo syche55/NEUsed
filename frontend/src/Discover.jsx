@@ -7,6 +7,7 @@ import { ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader, SidebarFooter, Side
 import { Link } from 'react-router-dom';
 import Post from "./components/Post";
 import './Discover.css';
+// import AuthContext from './auth-context';
 
 class Discover extends React.Component {
     render() {
