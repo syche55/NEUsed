@@ -163,6 +163,10 @@ class Form extends Component {
                 <option value="Electronics">Electronics</option>
                 <option value="Entertainment">Entertainment</option>
                 <option value="Family">Family</option>
+                <option value="Family">FreeStuff</option>
+                <option value="Family">Hobbies</option>
+                <option value="Family">Other</option>
+                <option value="Family">Outdoor</option>
               </select>
             </div>
             <div className="email">

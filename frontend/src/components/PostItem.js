@@ -35,6 +35,7 @@ const PostItem= (props) => {
 
       const post = props.post;
       return (
+        
         <>
           <li className='post__item' onClick={openModal}>
             <div className='post__item__link'>
@@ -54,7 +55,7 @@ const PostItem= (props) => {
               </div>
             </div>
           </li>
-          <Modal showModal={showModal} setShowModal={setShowModal} props={props}/>
+          <Modal showModal={showModal} setShowModal={setShowModal} props={post}/>
           </>
       );
 }
