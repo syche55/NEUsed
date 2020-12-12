@@ -4,9 +4,10 @@ import Discover from "./Discover.jsx";
 import Sell from './Sell';
 
 const routes = [
+    // { path: '/edit/:id', component: Edit },
     { path: '/discover/:category?', component: Discover },
     { path: '/about', component: About },
-    { path: '/sell', component: Sell},
+    { path: '/sell', component: Sell },
     { path: '*', component: NotFound },
 ];
 

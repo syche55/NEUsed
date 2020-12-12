@@ -10,7 +10,6 @@ const PostItem= (props) => {
 
       const post = props.post;
       const price = '$ ' +post.price;
-      console.log(post._id);
       return (
 
         <>
@@ -32,7 +31,7 @@ const PostItem= (props) => {
               </div>
             </div>
           </li>
-          <Modal showModal={showModal} setShowModal={setShowModal} props={post}/>
+          <Modal showModal={showModal} setShowModal={setShowModal} props={post} creatorEmail={props.creatorEmail}/>
           </>
       );
 }

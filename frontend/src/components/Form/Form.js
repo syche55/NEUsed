@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import authContext from "../../auth-context";
 import "./Form.css";
+import withToast from "../../withToast.jsx";
 
 
 class Form extends Component {
@@ -67,7 +68,7 @@ class Form extends Component {
       `
     }
 
-      console.log(JSON.stringify(requestBody));
+    const { showSuccess, showError } = this.props;
 
     fetch("http://localhost:8000/graphql", {
       method: "POST",
@@ -78,12 +79,13 @@ class Form extends Component {
     }).then((res) => {
       if (res.status !== 200 && res.status !== 201) {
         throw new Error("Failed!");
+        showError("Create Failed!")
       }
       return res.json();
     })
     .then((resData) => {
       console.log(resData);
-      window.alert("Successfully created new post!")
+      showSuccess("Successfully created new post!")
     })
     .catch((err) => {
       console.log(err);
@@ -93,6 +95,7 @@ class Form extends Component {
   };
 
   validate (args) {
+    const { showError } = this.props;
     // input validation
     if (
       args.title.trim().length === 0 ||
@@ -101,7 +104,7 @@ class Form extends Component {
       args.content.trim().length === 0 ||
       args.image.trim().length === 0
     ) {
-      window.alert("Bad input!");
+      showError("Bad input!");
       return false;
     }
     return true;
@@ -180,4 +183,4 @@ class Form extends Component {
   }
 }
 
-export default Form;
+export default withToast(Form);
