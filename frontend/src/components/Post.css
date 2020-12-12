@@ -56,6 +56,7 @@ h1 {
 
 .post__item__pic-wrap {
   position: relative;
+  padding-right: 60px;
   width: 100%;
   padding-top: 67%;
   overflow: hidden;

@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useCallback } from 'react';
+import { Link } from "react-router-dom";
 import { useSpring, animated } from 'react-spring';
 import styled from 'styled-components';
 import { MdClose } from 'react-icons/md';
@@ -112,8 +113,10 @@ export const Modal = ( { showModal, setShowModal, props }) => {
     },
     [keyPress]
   );
+  const price = '$ ' + props.price;
 
   return (
+    
     <>
       {showModal ? (
         <Background onClick={closeModal} ref={modalRef}>
@@ -123,10 +126,19 @@ export const Modal = ( { showModal, setShowModal, props }) => {
               <ModalContent>
                 <h1>{props.title}</h1>
                 <p className= 'modal__desc'>{props.content}</p>
-                <p className= 'modal__price'>{props.price}</p>
-                <button>Buy</button>
-      <div className= 'modal__date'>{moment(props.createdAt, "YYYYMMDD").fromNow()}</div>
-                <div className= 'modal__creater'>{props.email}</div>
+                <p className= 'modal__price'>{price}</p>
+                {/* <ButtonMailto className= 'btn--outline'label="Buy" mailto={props.email} /> */}
+                <Link
+                  to='#'
+                  onClick={(e) => {
+                      window.location.href = ' mailto:' + props.email;
+                      e.preventDefault();
+                  }}
+                  >
+                  <button >Buy</button>
+                </Link>
+                <div className= 'modal__date'>{moment(props.createdAt, "YYYYMMDD").fromNow()}</div>
+                <div className= 'modal__creater'>{props.creator}</div>
                 { props.status ?
                 <p className ='modal__item__on'>Availble</p> : <p className ='modal__item__off'>Sold Out</p>
                 }
@@ -135,7 +147,6 @@ export const Modal = ( { showModal, setShowModal, props }) => {
                 aria-label='Close modal'
                 onClick={() => setShowModal(prev => !prev)}
               />
-
             </ModalWrapper>
           </animated.div>
         </Background>

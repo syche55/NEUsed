@@ -34,12 +34,14 @@ const PostItem= (props) => {
   //   );
 
       const post = props.post;
+      const price = '$ ' +post.price;
+      console.log(post._id);
       return (
         
         <>
           <li className='post__item' onClick={openModal}>
             <div className='post__item__link'>
-              <figure className='post__item__pic-wrap' data-category={post.price}>
+              <figure className='post__item__pic-wrap' data-category={price}>
                 <img
                   className='post__item__img'
                   alt='Product Image'
