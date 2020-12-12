@@ -11,6 +11,7 @@ import './Discover.css';
 
 class Discover extends React.Component {
     render() {
+        const { match: { params: { category } } } = this.props;
         return (
             <div className="WithSideBar">
                 <ProSidebar>
@@ -24,7 +25,7 @@ class Discover extends React.Component {
                             <SubMenu title="Explore by Category" defaultOpen={true}>
                                 <MenuItem>Apparel<Link to="./apparel" /></MenuItem>
                                 <MenuItem>Electronics<Link to="./electronics" /></MenuItem>
-                                <MenuItem>entertainment<Link to="./entertainment" /></MenuItem>
+                                <MenuItem>Entertainment<Link to="./entertainment" /></MenuItem>
                                 <MenuItem>Family<Link to="./family" /></MenuItem>
                                 <MenuItem>FreeStuff<Link to="./freestuff" /></MenuItem>
                                 <MenuItem>Hobbies<Link to="./hobbies" /></MenuItem>
@@ -39,7 +40,7 @@ class Discover extends React.Component {
                     </SidebarContent>
                 </ProSidebar>
                 <div className="GroupsContentsWrapper">
-                    <Post />
+                    <Post category={category} />
                 </div>
             </div>
         )

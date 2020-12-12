@@ -4,8 +4,7 @@ import Discover from "./Discover.jsx";
 import Sell from './Sell';
 
 const routes = [
-    // { path: '/discover/:category', component: CategoryPage },
-    { path: '/discover/', component: Discover },
+    { path: '/discover/:category?', component: Discover },
     { path: '/about', component: About },
     { path: '/sell', component: Sell},
     { path: '*', component: NotFound },
