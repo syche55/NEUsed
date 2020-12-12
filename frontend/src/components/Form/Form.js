@@ -32,6 +32,12 @@ class Form extends Component {
     // };
   }
 
+  refreshPage() {
+    // window.location.reload(false);
+    // setTimeout(check, 1000);
+    setTimeout(() => window.location.replace("/discover"), 1000);
+  }
+
   static contextType = authContext;
 
   handleSubmit = e => {
@@ -92,6 +98,7 @@ class Form extends Component {
     });
 
   }
+  this.refreshPage();
   };
 
   validate (args) {

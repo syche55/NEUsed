@@ -81,6 +81,13 @@ const CloseModalButton = styled(MdClose)`
 `;
 
 export const Modal = ( { showModal, setShowModal, props, creatorEmail }) => {
+
+  function refreshPage() {
+    // window.location.reload(false);
+    // setTimeout(check, 1000);
+    setTimeout(() => window.location.reload(), 1000);
+  }
+  
   const modalRef = useRef();
 
   const post = props;
@@ -147,6 +154,7 @@ export const Modal = ( { showModal, setShowModal, props, creatorEmail }) => {
         .catch((err) => {
           console.log(err);
         });
+        refreshPage();
   };
 
   useEffect(
