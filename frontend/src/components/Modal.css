@@ -17,6 +17,14 @@
   color:white;
   font-size: 40px; 
 }
+.btn--outline{
+  color: #fff !important;
+  background: #fff !important;
+  margin: 1rem;
+  border-radius: 5px;
+  padding: 8px 20px;
+  transition: all 0.3s ease-out;
+}
 
 .modal__item__on{
   -webkit-text-stroke: 0.2px red; 

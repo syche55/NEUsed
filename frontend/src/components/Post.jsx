@@ -36,6 +36,46 @@ class Post extends Component  {
   }
 
 
+  // deletePostHandler = (postId) => {
+  //   const requestBody = {
+  //     query: `
+  //             mutation {
+  //               deletePost(postId: "${postId}"){
+  //                   _id
+  //                   title
+  //               }
+  //             }
+  //           `,
+  //   };
+  //   fetch("/graphql", {
+  //     method: "POST",
+  //     body: JSON.stringify(requestBody),
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //   })
+  //     .then((res) => {
+  //       if (res.status !== 200 && res.status !== 201) {
+  //         console.log(postId);
+  //         throw new Error("Failed!");
+  //       }
+  //       window.alert("Successfully deleted!");
+  //       return res.json();
+  //     })
+  //     .then((resData) => {
+  //       this.setState((prevState) => {
+  //         const updatedPosts = prevState.posts.filter((post) => {
+  //           return post._id !== postId;
+  //         });
+
+  //         return { posts: updatedPosts };
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // };
+
 
   constructor(props) {
     super(props);
@@ -88,8 +128,8 @@ class Post extends Component  {
     const { posts } = this.state;
     console.log(posts);
     if (posts != null) {
-      posts.reverse();
-      const postItems = posts.map((post) =>(
+
+      const postItems = posts.sort((a,b) => (new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())).map((post) =>(
           <PostItem post={post} key={post._id} />
       ));
       return (
