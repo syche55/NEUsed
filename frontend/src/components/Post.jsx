@@ -35,7 +35,6 @@ class Post extends Component  {
     return data;
   }
 
-
   // deletePostHandler = (postId) => {
   //   const requestBody = {
   //     query: `
@@ -67,7 +66,7 @@ class Post extends Component  {
   //         const updatedPosts = prevState.posts.filter((post) => {
   //           return post._id !== postId;
   //         });
-
+  //
   //         return { posts: updatedPosts };
   //       });
   //     })
@@ -130,7 +129,7 @@ class Post extends Component  {
     if (posts != null) {
 
       const postItems = posts.sort((a,b) => (new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())).map((post) =>(
-          <PostItem post={post} key={post._id} />
+          <PostItem post={post} key={post._id} creatorEmail={this.context.email} />
       ));
       return (
           <Grid>

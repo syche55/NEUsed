@@ -7,6 +7,7 @@ import { LinkContainer } from 'react-router-bootstrap';
 import Contents from "./Contents.jsx";
 import SignInNavItem from "./SignInNavItem.jsx";
 import AuthContext from "./auth-context";
+import SellNavItem from "./SellNavItem.jsx";
 
 function NavBar({ user, onUserChange }) {
     return (
@@ -20,9 +21,7 @@ function NavBar({ user, onUserChange }) {
                 </LinkContainer>
             </Nav>
             <Nav pullRight>
-                <LinkContainer to="/sell">
-                    <NavItem>Sell</NavItem>
-                </LinkContainer>
+                <SellNavItem />
                 <SignInNavItem user={user} onUserChange={onUserChange} />
                 <LinkContainer to="/about">
                     <NavItem>About</NavItem>

@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { MdClose } from 'react-icons/md';
 import moment from 'moment';
 import './Modal.css';
+import authContext from "../auth-context";
 
 const Background = styled.div`
   width: 100%;
@@ -79,9 +80,11 @@ const CloseModalButton = styled(MdClose)`
   z-index: 10;
 `;
 
-export const Modal = ( { showModal, setShowModal, props }) => {
+export const Modal = ( { showModal, setShowModal, props, creatorEmail }) => {
   const modalRef = useRef();
 
+  const post = props;
+  const apiEndpoint = process.env.REACT_APP_UI_API_ENDPOINT;
   const animation = useSpring({
     config: {
       duration: 250
@@ -105,6 +108,46 @@ export const Modal = ( { showModal, setShowModal, props }) => {
     },
     [setShowModal, showModal]
   );
+  const deletePostHandler = (postId) => {
+    const requestBody = {
+      query: `
+              mutation {
+                deletePost(postId: "${postId}"){
+                    _id
+                    title
+                }
+              }
+            `,
+    };
+    console.log(postId);
+    fetch(`${apiEndpoint}`, {
+      method: "POST",
+      body: JSON.stringify(requestBody),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+        .then((res) => {
+          if (res.status !== 200 && res.status !== 201) {
+            console.log(postId);
+            throw new Error("Failed!");
+          }
+          window.alert("Successfully deleted!");
+          return res.json();
+        })
+        .then((resData) => {
+          this.setState((prevState) => {
+            const updatedPosts = prevState.posts.filter((post) => {
+              return post._id !== postId;
+            });
+
+            return { posts: updatedPosts };
+          });
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+  };
 
   useEffect(
     () => {
@@ -114,9 +157,8 @@ export const Modal = ( { showModal, setShowModal, props }) => {
     [keyPress]
   );
   const price = '$ ' + props.price;
-
   return (
-    
+
     <>
       {showModal ? (
         <Background onClick={closeModal} ref={modalRef}>
@@ -128,15 +170,37 @@ export const Modal = ( { showModal, setShowModal, props }) => {
                 <p className= 'modal__desc'>{props.content}</p>
                 <p className= 'modal__price'>{price}</p>
                 {/* <ButtonMailto className= 'btn--outline'label="Buy" mailto={props.email} /> */}
-                <Link
-                  to='#'
-                  onClick={(e) => {
-                      window.location.href = ' mailto:' + props.email;
-                      e.preventDefault();
-                  }}
-                  >
-                  <button >Buy</button>
-                </Link>
+                { props.email === creatorEmail ?
+                    <div>
+                      <Link
+                          to='#'
+                          onClick={(e) => {
+                            window.location.href = ' mailto:' + props.email;
+                            e.preventDefault();
+                          }}
+                      >
+                        <button  style={{background: "green"}}>Edit</button>
+                      </Link>
+                      <Link
+                          to='#'
+                          onClick={(e) => {
+                            deletePostHandler(post._id);
+                            e.preventDefault();
+                          }}
+                      >
+                        <button style={{background: "red"}}>Delete</button>
+                      </Link>
+                    </div> :
+                    <Link
+                        to='#'
+                        onClick={(e) => {
+                          window.location.href = ' mailto:' + props.email;
+                          e.preventDefault();
+                        }}
+                    >
+                      <button >Buy</button>
+                    </Link>
+                }
                 <div className= 'modal__date'>{moment(props.createdAt, "YYYYMMDD").fromNow()}</div>
                 <div className= 'modal__creater'>{props.creator}</div>
                 { props.status ?
