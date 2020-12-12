@@ -61,7 +61,7 @@ const ModalContent = styled.div`
   }
   button {
     padding: 5px 24px;
-    margin-bottom: 10px;
+    margin: 5px;
     background: #141414;
     color: #fff;
     border: none;
@@ -187,7 +187,7 @@ export const Modal = ( { showModal, setShowModal, props, creatorEmail }) => {
                             e.preventDefault();
                           }}
                       >
-                        <button  style={{background: "green"}}>Edit</button>
+                        <button  style={{background: "#ffc107"}}>Edit</button>
                       </Link>
                       <Link
                           to='#'
@@ -196,7 +196,7 @@ export const Modal = ( { showModal, setShowModal, props, creatorEmail }) => {
                             e.preventDefault();
                           }}
                       >
-                        <button style={{background: "red"}}>Delete</button>
+                        <button style={{background: "#dc3545"}}>Delete</button>
                       </Link>
                     </div> :
                     <Link
@@ -212,7 +212,7 @@ export const Modal = ( { showModal, setShowModal, props, creatorEmail }) => {
                 <div className= 'modal__date'>{moment(props.createdAt, "YYYYMMDD").fromNow()}</div>
                 <div className= 'modal__creater'>{props.creator}</div>
                 { props.status ?
-                <p className ='modal__item__on'>Availble</p> : <p className ='modal__item__off'>Sold Out</p>
+                <p className = 'modal__item__on'>Availble</p> : <p className ='modal__item__off'>Sold Out</p>
                 }
               </ModalContent>
               <CloseModalButton
