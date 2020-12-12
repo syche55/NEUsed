@@ -1,15 +1,12 @@
 import React from "react";
-import {
-    Panel, Row, Col, Thumbnail, Button,
-    Glyphicon, Modal, Form, FormGroup, ControlLabel, FormControl, ButtonToolbar,
-} from "react-bootstrap";
-import { ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader, SidebarFooter, SidebarContent } from 'react-pro-sidebar';
+import { ProSidebar, Menu, MenuItem, SubMenu, SidebarHeader, SidebarContent } from 'react-pro-sidebar';
 import { Link } from 'react-router-dom';
 import Post from "./components/Post.jsx";
 import './Discover.css';
-// import AuthContext from './auth-context';
+import AuthContext from './auth-context';
 
 class Discover extends React.Component {
+    static contextType = AuthContext;
     render() {
         const { match: { params: { category } } } = this.props;
         return (
@@ -32,10 +29,13 @@ class Discover extends React.Component {
                                 <MenuItem>Outdoor<Link to="./outdoor" /></MenuItem>
                                 <MenuItem>Other<Link to="./other" /></MenuItem>
                             </SubMenu>
-                            <MenuItem>
-                                Your Posts
-                                <Link to="./yourposts" />
-                            </MenuItem>
+                            {
+                                this.context.signedIn?
+                                <MenuItem>
+                                    Your Posts
+                                    <Link to="./yourposts" />
+                                </MenuItem>: <></>
+                            }
                         </Menu>
                     </SidebarContent>
                 </ProSidebar>

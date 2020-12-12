@@ -1,7 +1,5 @@
 import React from 'react';
-import {
-    NavItem, Modal, Button, NavDropdown, MenuItem, Nav,
-} from 'react-bootstrap';
+import { NavItem } from 'react-bootstrap';
 import withToast from './withToast.jsx';
 import AuthContext from './auth-context.js';
 import {LinkContainer} from "react-router-bootstrap";
