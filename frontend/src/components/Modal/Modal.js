@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { MdClose } from 'react-icons/md';
 import moment from 'moment';
 import './Modal.css';
-import withToast from "../withToast.jsx";
+import withToast from "../.././withToast.jsx";
 
 const Background = styled.div`
   width: 100%;
@@ -63,9 +63,10 @@ const ModalContent = styled.div`
     padding: 5px 24px;
     margin: 5px;
     background: #141414;
+    font-family: 'Architects Daughter', cursive;
     color: #fff;
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
   }
 `;
 

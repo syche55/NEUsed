@@ -137,7 +137,7 @@ class Form extends Component {
               />
             </div>
             <div className="image">
-              <label htmlFor="image">Image URL</label>
+            <label htmlFor="image">Image URL <a href="https://imgbb.com/">Get Image url here!</a></label>
               <input
                 placeholder="Image URL"
                 type="text"

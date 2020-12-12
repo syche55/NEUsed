@@ -1,4 +1,3 @@
-
 .wrapper {
   height: 100%;
   width: 100%;
@@ -60,7 +59,8 @@ input::placeholder {
 .content,
 .image,
 .category,
-.price {
+.price,
+.status {
   width: 100%;
   display: flex;
   flex-direction: column;
