@@ -37,6 +37,9 @@ Navbar: using [React- Bootstrap API](https://react-bootstrap.github.io/)
     * User{} Account info from Google Sign in API
 Post can be edit, delete, add. User can sign in and out.
 
+### Test Strategy Design
+Our team developed a testing documentation with specific testing rules based on app features, covering technical reviews, database review, development testing, qualification testing, and acceptance testing. We tested frontend and backend seperately initially and test the merged work together. Please see the Test Plan doc for the details. The test doc also serves as an issue tracker with test log, issue assignee and status record.
+
 # Project Wiki & docs & Communications Plan
 
 [Project Wiki](https://github.ccs.neu.edu/2020FACS5500SV/project-NEUsed/wiki)
@@ -46,3 +49,5 @@ Post can be edit, delete, add. User can sign in and out.
 [Project board](https://github.ccs.neu.edu/2020FACS5500SV/project-NEUsed/projects)
 
 [Communications Plan](https://github.ccs.neu.edu/2020FACS5500SV/project-NEUsed/blob/master/docs/Communications%20Plan.pdf)
+
+[Test Plan] (https://docs.google.com/document/d/1_44-6DaV01J2rvLLQ5rpl5JuTIrboWIGnR2bp2wELc8/edit?usp=sharing)
