@@ -6,13 +6,18 @@ import authContext from "../auth-context";
 import graphQLFetch from "../graphQLFetch.js";
 import withToast from "../withToast.jsx";
 import Col from "react-bootstrap/lib/Col";
+import {MenuItem, SubMenu} from "react-pro-sidebar";
+import {Link} from "react-router-dom";
 
 
 class Post extends Component  {
-  static async fetchData(showError) {
+
+  static contextType = authContext;
+
+  static async fetchData(vars, showError) {
     const query = `
-              query {
-                post {
+              query post ($category: categoryType, $email: String){
+                post (category: $category, email: $email) {
                     _id
                     title
                     content
@@ -26,7 +31,7 @@ class Post extends Component  {
               }
             `;
 
-    const data = await graphQLFetch(query, null, showError);
+    const data = await graphQLFetch(query, vars, showError);
     return data;
   }
 
@@ -71,12 +76,12 @@ class Post extends Component  {
   //     });
   // };
 
+
   constructor(props) {
     super(props);
     this.state = { posts: null };
   }
 
-  static contextType = authContext;
 
   componentDidMount() {
     const { posts } = this.state;
@@ -84,8 +89,26 @@ class Post extends Component  {
   }
 
   async loadData() {
-    const { showError } = this.props;
-    const data = await Post.fetchData();
+    const { showError, category } = this.props;
+    let vars = {};
+    const categoryDict = {
+      "apparel": "Apparel",
+      "electronics": "Electronics",
+      "entertainment": "Entertainment",
+      "family": "Family",
+      "freestuff": "FreeStuff",
+      "hobbies": "Hobbies",
+      "other": "Other",
+      "outdoor": "Outdoor"
+    };
+    if (category != null) {
+      if (category === "yourposts") {
+        vars.email = this.context.email;
+      } else {
+        vars.category = categoryDict[category];
+      }
+    }
+    const data = await Post.fetchData(vars, showError);
     if (data) {
       this.setState({
         posts: data.post
@@ -93,19 +116,19 @@ class Post extends Component  {
     }
   }
 
-  // componentDidUpdate(prevProps, prevState, snapshot) {
-  //   const { match: { params: { category: prevCate } } } = prevProps;
-  //   const { match: { params: { category } } } = this.props;
-  //   if (prevCate !== category) {
-  //     this.loadData();
-  //   }
-  // }
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    const { category: prevCate } = prevProps;
+    const { category } = this.props;
+    if (prevCate !== category) {
+      this.loadData();
+    }
+  }
 
   render() {
     const { posts } = this.state;
     console.log(posts);
     if (posts != null) {
-      // newest first
+
       const postItems = posts.sort((a,b) => (new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())).map((post) =>(
           <PostItem post={post} key={post._id} />
       ));

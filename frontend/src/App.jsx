@@ -6,6 +6,7 @@ import {
 import { LinkContainer } from 'react-router-bootstrap';
 import Contents from "./Contents.jsx";
 import SignInNavItem from "./SignInNavItem.jsx";
+import AuthContext from "./auth-context";
 
 function NavBar({ user, onUserChange }) {
     return (
@@ -38,6 +39,8 @@ export default class App extends React.Component {
         this.onUserChange = this.onUserChange.bind(this);
     }
 
+    static contextType = AuthContext;
+
     async componentDidMount() {
         const apiEndpoint = process.env.REACT_APP_UI_AUTH_ENDPOINT;
         const response = await fetch(`${apiEndpoint}/user`, {
@@ -48,6 +51,9 @@ export default class App extends React.Component {
         console.log(body);
         const result = JSON.parse(body);
         const { signedIn, givenName, email } = result;
+        this.context.email = email;
+        this.context.signedIn = signedIn;
+        this.context.givenName = givenName;
         this.setState({ user: {signedIn, givenName, email } });
     }
 

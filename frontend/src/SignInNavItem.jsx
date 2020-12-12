@@ -54,7 +54,6 @@ class SignInNavItem extends React.Component {
                 body: JSON.stringify({ google_token: googleToken }),
             });
             const body = await response.text();
-            console.log(body);
             const result = JSON.parse(body);
             const { signedIn, givenName, email } = result;
             this.context.email = email;

@@ -35,7 +35,7 @@ class Form extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-    
+
     const title = this.titleElRef.current.value;
     const content = this.contentElRef.current.value;
     const price = this.priceElRef.current.value;
@@ -43,10 +43,10 @@ class Form extends Component {
     const category = this.categoryElRef.current.value;
     const email = this.context.email;
     const creator = this.context.givenName;
-    
+
     if (this.validate({title, content, price, image})) {
 
-    
+
 
     const requestBody = {
       query: `
@@ -66,14 +66,14 @@ class Form extends Component {
         }
       `
     }
-      
+
       console.log(JSON.stringify(requestBody));
 
     fetch("http://localhost:8000/graphql", {
       method: "POST",
       body: JSON.stringify(requestBody),
       headers: {
-        "Content-Type": "application/json"      
+        "Content-Type": "application/json"
       },
     }).then((res) => {
       if (res.status !== 200 && res.status !== 201) {
@@ -88,22 +88,8 @@ class Form extends Component {
     .catch((err) => {
       console.log(err);
     });
-  
+
   }
-
-
-    // if (this.state) {
-    //   console.log(`
-    //     --SUBMITTING--
-    //     title: ${this.state.title}
-    //     content: ${this.state.content}
-    //     price: ${this.state.price}
-    //     image: ${this.state.image}
-    //     category: ${this.state.category}
-    //   `);
-    // } else {
-    //   console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
-    // }
   };
 
   validate (args) {
@@ -123,7 +109,7 @@ class Form extends Component {
 
 
   render() {
- 
+
     return (
       <div className="wrapper">
         <div className="form-wrapper">
@@ -177,13 +163,13 @@ class Form extends Component {
                 <option value="Electronics">Electronics</option>
                 <option value="Entertainment">Entertainment</option>
                 <option value="Family">Family</option>
-                <option value="Family">FreeStuff</option>
-                <option value="Family">Hobbies</option>
-                <option value="Family">Other</option>
-                <option value="Family">Outdoor</option>
+                <option value="FreeStuff">FreeStuff</option>
+                <option value="Hobbies">Hobbies</option>
+                <option value="Other"  selected = "selected">Other</option>
+                <option value="Outdoor">Outdoor</option>
               </select>
             </div>
-            
+
             <div className="createPost">
               <button type="submit">Add Post Now</button>
             </div>
