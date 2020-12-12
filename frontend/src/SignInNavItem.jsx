@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    NavItem, Modal, Button, NavDropdown, MenuItem,
+    NavItem, Modal, Button,
 } from 'react-bootstrap';
 import withToast from './withToast.jsx';
 import AuthContext from './auth-context.js';

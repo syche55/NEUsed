@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Modal} from './Modal';
+import Modal from './Modal';
 
 const PostItem= (props) => {
   const [showModal, setShowModal] = useState(false);
@@ -31,7 +31,7 @@ const PostItem= (props) => {
               </div>
             </div>
           </li>
-          <Modal showModal={showModal} setShowModal={setShowModal} props={post} creatorEmail={props.creatorEmail}/>
+          <Modal showModal={showModal} setShowModal={setShowModal} props={post} creatorEmail={props.creatorEmail} />
           </>
       );
 }

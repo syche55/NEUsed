@@ -58,7 +58,7 @@ input PostUpdateInput {
 
 type RootQuery {
     user: [User!]!
-    post(email: String, category: categoryType): [Post!]!
+    post(email: String, category: categoryType, _id: ID): [Post!]!
 }
 
 type RootMutation {

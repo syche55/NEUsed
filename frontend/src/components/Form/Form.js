@@ -13,29 +13,10 @@ class Form extends Component {
     this.priceElRef = React.createRef();
     this.imageElRef = React.createRef();
     this.categoryElRef = React.createRef();
-
-
-
-    // this.state = {
-    //   title: null,
-    //   content: null,
-    //   price: null,
-    //   image: null,
-    //   category: null,
-    //   formErrors: {
-    //     title: "",
-    //     content: "",
-    //     price: "",
-    //     image:"",
-    //     category:""
-    //   }
-    // };
   }
 
   refreshPage() {
-    // window.location.reload(false);
-    // setTimeout(check, 1000);
-    setTimeout(() => window.location.replace("/discover"), 1000);
+    setTimeout(() => window.location.replace("/discover/"), 1000);
   }
 
   static contextType = authContext;

@@ -5,10 +5,6 @@ import Grid from './Grid';
 import authContext from "../auth-context";
 import graphQLFetch from "../graphQLFetch.js";
 import withToast from "../withToast.jsx";
-import Col from "react-bootstrap/lib/Col";
-import {MenuItem, SubMenu} from "react-pro-sidebar";
-import {Link} from "react-router-dom";
-
 
 class Post extends Component  {
 
@@ -34,47 +30,6 @@ class Post extends Component  {
     const data = await graphQLFetch(query, vars, showError);
     return data;
   }
-
-  // deletePostHandler = (postId) => {
-  //   const requestBody = {
-  //     query: `
-  //             mutation {
-  //               deletePost(postId: "${postId}"){
-  //                   _id
-  //                   title
-  //               }
-  //             }
-  //           `,
-  //   };
-  //   fetch("/graphql", {
-  //     method: "POST",
-  //     body: JSON.stringify(requestBody),
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //   })
-  //     .then((res) => {
-  //       if (res.status !== 200 && res.status !== 201) {
-  //         console.log(postId);
-  //         throw new Error("Failed!");
-  //       }
-  //       window.alert("Successfully deleted!");
-  //       return res.json();
-  //     })
-  //     .then((resData) => {
-  //       this.setState((prevState) => {
-  //         const updatedPosts = prevState.posts.filter((post) => {
-  //           return post._id !== postId;
-  //         });
-  //
-  //         return { posts: updatedPosts };
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // };
-
 
   constructor(props) {
     super(props);

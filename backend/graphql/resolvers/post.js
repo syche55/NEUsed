@@ -3,16 +3,24 @@ const Post = require('../../models/post');
 
     // display posts
     async function post(args) {
+        const idFilter = args._id;
         const emailFilter = args.email;
         const categoryFilter = args.category;
         try {
             const post = await Post.find();
+            if (idFilter != null) {
+                filteredIDPosts = post.filter(function(filterIDPost){
+                    return filterIDPost._id == idFilter;
+                });
+            } else {
+                filteredIDPosts=post;
+            }
             if (emailFilter != null) {
                 filteredEmailPosts = post.filter(function(filterEmailPost){
                     return filterEmailPost.email == emailFilter;
-                }); 
+                });
             } else {
-                filteredEmailPosts=post;
+                filteredEmailPosts=filteredIDPosts;
                 }
             if (categoryFilter !=null) {
                 filteredCategoryPosts = filteredEmailPosts.filter(function(filterCategoryPost){
@@ -30,12 +38,12 @@ const Post = require('../../models/post');
                     };
                 });
             }
-            
+
              catch (err) {
                 throw err;
             }
     }
-    
+
     // create new posts
     async function createPost(args) {
         const post = new Post({
@@ -81,7 +89,7 @@ const Post = require('../../models/post');
             const filter = {_id: args.postId};
             const updatedPost = await Post.findOneAndUpdate(filter, args.postUpdateInput, { "new": true})
             return updatedPost;
-            
+
         } catch(err) {
             throw err;
         }

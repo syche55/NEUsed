@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { MdClose } from 'react-icons/md';
 import moment from 'moment';
 import './Modal.css';
-import authContext from "../auth-context";
+import withToast from "../withToast.jsx";
 
 const Background = styled.div`
   width: 100%;
@@ -80,14 +80,13 @@ const CloseModalButton = styled(MdClose)`
   z-index: 10;
 `;
 
-export const Modal = ( { showModal, setShowModal, props, creatorEmail }) => {
-
+const Modal = ( { showModal, setShowModal, props, creatorEmail }) => {
   function refreshPage() {
     // window.location.reload(false);
     // setTimeout(check, 1000);
-    setTimeout(() => window.location.reload(), 1000);
+    setTimeout(() => window.location.replace("/discover/"), 1000);
   }
-  
+
   const modalRef = useRef();
 
   const post = props;
@@ -165,6 +164,7 @@ export const Modal = ( { showModal, setShowModal, props, creatorEmail }) => {
     [keyPress]
   );
   const price = '$ ' + props.price;
+  const link = `/edit/${post._id}`;
   return (
 
     <>
@@ -181,11 +181,7 @@ export const Modal = ( { showModal, setShowModal, props, creatorEmail }) => {
                 { props.email === creatorEmail ?
                     <div>
                       <Link
-                          to='#'
-                          onClick={(e) => {
-                            window.location.href = ' mailto:' + props.email;
-                            e.preventDefault();
-                          }}
+                          to={link}
                       >
                         <button  style={{background: "green"}}>Edit</button>
                       </Link>
@@ -226,3 +222,5 @@ export const Modal = ( { showModal, setShowModal, props, creatorEmail }) => {
     </>
   );
 };
+
+export default withToast(Modal);
