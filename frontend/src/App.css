@@ -36,3 +36,8 @@
     transform: rotate(360deg);
   }
 }
+
+.abouttext{
+  font-family: 'Architects Daughter', cursive;
+  margin-top: 3rem;
+}
