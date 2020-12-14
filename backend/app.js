@@ -61,17 +61,4 @@ app.use(
     })
 );
 
-// mongoose.connect(`${process.env.MONGO_URL}`, {
-//         useNewUrlParser: true,
-//         useUnifiedTopology: true,
-//         useFindAndModify: false
-//     }).then(() => {
-//     app.listen(8000);
-
-//     }).catch(err => {
-//     console.log(err);
-//     });
-
-// });
-
 });
