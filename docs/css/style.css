@@ -73,12 +73,24 @@ body {
 }
 
 .title {
-    color: #f2f2f2;
+    color: #444;
     padding: 8px 30px;
     position: fixed;
     top: 55px;
     font-family: "Agency FB", monospace;
     font-size: 50px;
+    font-weight: bold;
+    user-select: none;
+    text-decoration: none;
+}
+
+.text {
+    color: #444;
+    padding: 8px 30px;
+    position: fixed;
+    top: 140px;
+    font-family: "Agency FB", monospace;
+    font-size: 25px;
     font-weight: bold;
     user-select: none;
     text-decoration: none;
@@ -146,10 +158,11 @@ body {
 .link {
     font-family: "Agency FB", monospace;
     font-size: 20px;
-    outline: 2px solid darkred;
+    /*outline: 4px solid rgba(9, 84, 133, 1);*/
     color: #f2f2f2;
     padding: 6px 10px 6px 10px;
-    background-color: rgba(0, 0, 0, 0.3);
+    font-weight: bold;
+    background-color: rgba(0, 51, 89, 1);
     text-decoration: none;
 
 }

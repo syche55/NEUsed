@@ -13,9 +13,10 @@
     border-radius: 0 3px 3px 0;
     font-weight: bold;
     font-size: 18px;
-    color: white;
+    color: #444;
     transition: 0.6s ease;
     user-select: none;
+    background-color: rgba(0, 0, 0, 0.2);
 }
 
 .next {
@@ -102,7 +103,7 @@ img {
     z-index:-10;
 }
 
-.profile img {
+.page img {
     position: relative;
     float: right;
     justify-content: right;
