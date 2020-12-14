@@ -17,13 +17,7 @@ type Post {
     updatedAt: String
 }
 
-type User {
-    _id: ID!
-    signedIn: Boolean!
-    givenName: String
-    name: String
-    email: String
-}
+
 
 enum categoryType {
     Apparel
@@ -38,12 +32,12 @@ enum categoryType {
 
 input PostInput {
     title: String!
-    content: String
-    price: Float
+    content: String!
+    price: Float!
     status: Boolean
-    image: String
-    email: String
-    creator: String
+    image: String!
+    email: String!
+    creator: String!
     category: categoryType = Other
 }
 
@@ -57,7 +51,6 @@ input PostUpdateInput {
 }
 
 type RootQuery {
-    user: [User!]!
     post(email: String, category: categoryType, _id: ID): [Post!]!
 }
 
