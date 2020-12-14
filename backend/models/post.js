@@ -10,16 +10,16 @@ const postSchema = new Schema({
     
             content: {
                 type: String,
-                reqiuired: false
+                reqiuired: true
             },
 
             price: {
                 type: Number,
-                required: false
+                required: true
             },
             creator: {
                 type: String,
-                required: false
+                required: true
             },
             status: {
                 type: Boolean,
@@ -27,7 +27,7 @@ const postSchema = new Schema({
             },
             image: {
                 type: String,
-                required: false
+                required: true
             },
             category: {
                 type: String,
@@ -35,7 +35,7 @@ const postSchema = new Schema({
             },
             email: {
                 type: String,
-                required: false
+                required: true
             }
 },
 { timestamps: true});
